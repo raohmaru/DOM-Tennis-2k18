@@ -5,7 +5,7 @@ the game is kick the ball with the cursor over and over without touching the flo
 The game is developed without using any game framework, nor using canvas neither WebGL, just for
 the sake of testing the performance with the DOM at 60 fps.
 
-[Play it now!]()
+[Play it now!](https://raohmaru.github.io/DOM-Tennis-2k18/src/index.html)
 
 ## Getting Started
 Simply clone the repository and go deep into the code. No build setup is implemented (yet).

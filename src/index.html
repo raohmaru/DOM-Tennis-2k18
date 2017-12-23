@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>DOM Tennis 2k18</title>
+	<meta name="description" content="Tennis game made with JavaScript and using the DOM">
+	<meta name="viewport" content="width=device-width, initial-scale=1">	
+	<link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+	<main class="gameboard" role="main">
+		<div class="score">
+			<div class="score__cell">
+				<span id="score" class="score__value"></span>
+			</div>
+		</div>
+		<div id="ball" class="ball" style="left: 166px; top: 266px;"><div class="ball__lines"></div></div>
+	</main>
+
+	<aside class="section" role="complementary">
+		<p class="section-title">Ranking</p>
+		<div class="column">
+			<ol class="ranking__list">
+				<li class="ranking__top"></li>
+				<li class="ranking__top"></li>
+				<li class="ranking__top"></li>
+				<li></li>
+				<li></li>
+			</ol>
+		</div>
+		<div class="column">
+			<ol class="ranking__list" start="6">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ol>
+		</div>
+		<div class="align-right">
+			<input type="button" class="button-clear" id="clearRanking" value="Clear ranking">
+		</div>
+	</aside>
+
+	<aside class="section" role="complementary">
+		<p class="section-title">Options</p>
+		<div>
+			Game speed: <span id="speedLabel">Normal</span>
+		</div>	  
+	</aside>
+	
+	<footer role="contentinfo">	
+	</footer>
+</div>
+	
+<script src="js/main.js"></script>
+
+</body>
+</html>

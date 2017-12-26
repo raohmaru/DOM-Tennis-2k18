@@ -6,8 +6,12 @@ charset = utf-8
 trim_trailing_whitespace = true
 end_of_line = lf
 
-[*.{js,json,css,html}]
+[*.{js,css,html}]
 indent_style = tab
 
 [*.{md,markdown}]
 trim_trailing_whitespace = false
+
+[*.{json}]
+indent_style = space
+indent_size = 2

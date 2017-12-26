@@ -1,0 +1,46 @@
+:root {
+	--ballSize: 34px;
+	--ballColorLight: #f9eb88;
+	--ballColorDark: #a0862c;
+	--ballLineColor: #fff;
+}
+
+.ball {
+	position: absolute;
+	z-index: 2;
+	width: var(--ballSize);
+	height: var(--ballSize);
+	overflow: hidden;
+	cursor: pointer;
+	border-radius: calc(var(--ballSize) / 2);
+	background: var(--ballColorLight); /* Old browsers */
+	background: radial-gradient(ellipse at 35% 35%, var(--ballColorLight) 20%, var(--ballColorDark) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	transform: translateZ(0);
+}
+	.ball__lines {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		
+		&::before,
+		&::after {
+			content: '';
+			position: absolute;
+			display: block;
+			width: 100%;
+			height: 100%;
+			cursor: pointer;
+			border-radius: calc(var(--ballSize) / 2);
+			border: 1px solid var(--ballLineColor);
+		}
+		&::before {
+			top: -20px;
+			left: -20px;
+		}
+		&::after {
+			top: 11px;
+			left: 11px;
+		}
+	}

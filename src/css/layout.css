@@ -1,0 +1,20 @@
+.wrapper {
+	max-width: 800px;
+}
+
+.section {
+	margin-top: 1em;
+}
+
+	.section__title {
+		font-weight: bold;
+	}
+
+.column {
+	float: left;
+	width: 50%;
+}
+
+.page-footer {
+	margin-top: 2em;
+}

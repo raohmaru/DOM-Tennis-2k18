@@ -1,14 +1,48 @@
 # DOM Tennis 2k18
-A JavaScript game using HTML, CSS and  [vanilla JavaScript](http://vanilla-js.com/). The goal of
-the game is kick the ball with the cursor over and over without touching the floor.
+A browser game using HTML, CSS and [vanilla JavaScript](http://vanilla-js.com/).  
+The goal of the game is to kick the ball with the cursor over and over without touching the floor.
 
 The game is developed without using any game framework, nor using canvas neither WebGL, just for
-the sake of testing the performance with the DOM at 60 fps.
+the sake of testing the performance with the [DOM](https://en.wikipedia.org/wiki/Document_Object_Model) at 60 fps.
 
-[Play it now!](https://raohmaru.github.io/DOM-Tennis-2k18/src/index.html)
+[Play it now!](http://raohmaru.com/lab/game/dom-tennis-2k18/)
 
 ## Getting Started
-Simply clone the repository and go deep into the code. No build setup is implemented (yet).
+You will need [node.js](https://nodejs.org/en/) v6.9.2 or greater installed on your machine.
+
+Clone the repository, open the folder in the terminal and run the following commands:
+
+- `npm install` (it will install all dependencies listed at [package.json](https://github.com/raohmaru/DOM-Tennis-2k18/blob/master/package.json).
+- `npm run build` (it will generate game files at dist/ folder).
+
+### Development
+The entry point of the game is the file [src/index.html](https://github.com/raohmaru/DOM-Tennis-2k18/blob/master/src/index.html).
+There we found all the screens of the game.
+
+Some "modern" features of CSS are used, such [variables](https://www.w3.org/TR/css-variables/) and
+[nesting](http://tabatkins.github.io/specs/css-nesting/). With the help of [PostCSS](http://postcss.org/),
+compatible CSS is generated for old and current browsers.
+
+JavaScript is written using features of [ECMAScript 2015+](https://github.com/lukehoban/es6features#readme)
+and transpilled with [Babel](https://babeljs.io/). The game is rendered using the DOM and the HTML
+elements are animated using CSS.
+
+### Available npm commands
+`npm run build`  
+Will generate CSS files and copy HTML and JS files to dist/ folder.
+
+`npm run build:prod`  
+Will clean dist/ folder, lint HTML, CSS and JS files, generate CSS files and minify all files into
+dist/ folder.
+
+`npm run lint`  
+Will lint HTML, CSS and JS files.
+
+`npm run clean`  
+Will clean dist/ folder.
+
+`npm run watch`  
+Will watch for changes in src/ folder and run the appropriate task when a file is modified.
 
 ## Browser Support
 The game supports IE 11, Edge, Firefox 15+, Chrome 20+, Safari 8+.

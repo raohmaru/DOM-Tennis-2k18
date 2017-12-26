@@ -1,0 +1,8 @@
+.button-clear {
+	padding: 0.2em 0.3em;
+	font-weight: bold;
+	color: #fff;
+	background-color: #b00;
+	border: 0;
+	cursor: pointer;
+}

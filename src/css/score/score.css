@@ -1,0 +1,21 @@
+.score {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	display: table;
+	width: 100%;
+	height: 100%;
+	user-select: none;
+}
+	.score__cell {
+		display: table-cell;
+		text-align: center;
+		vertical-align: middle;
+	}
+	.score__value {
+		font-size: 120px;
+		font-weight: bold;
+		color: #fff;
+		transform: translateZ(0);
+	}

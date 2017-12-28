@@ -5,7 +5,7 @@ The goal of the game is to kick the ball with the cursor over and over without t
 The game is developed without using any game framework, nor using canvas neither WebGL, just for
 the sake of testing the performance with the [DOM](https://en.wikipedia.org/wiki/Document_Object_Model) at 60 fps.
 
-[Play it now!](http://raohmaru.com/lab/game/dom-tennis-2k18/)
+[Play it now!](https://raohmaru.com/lab/game/dom-tennis-2k18/)
 
 ## Getting Started
 You will need [node.js](https://nodejs.org/en/) v6.9.2 or greater installed on your machine.

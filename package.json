@@ -6,37 +6,24 @@
   "scripts": {
     "build": "npm-run-all -l css js copy",
     "build:prod": "cross-env NODE_ENV=production npm-run-all -l clean lint css js minify",
-    "clean": "del-cli dist/*",	
+    "clean": "del-cli dist/*",
     "copy": "copy-cli src/*.html dist/",
-	
-    "html": "npm run copy",
     "css": "postcss -d dist/css/ src/css/main.css",
     "js": "babel src/js/ --out-dir dist/js/ --source-maps",
-	
     "lint": "npm-run-all -l lint:*",
     "lint:html": "htmlhint src/index.html",
     "lint:css": "stylelint src/css/*.css",
     "lint:js": "eslint src/js/**",
-	
     "minify": "npm-run-all -l minify:* replace",
     "minify:html": "html-minifier -c .htmlminifierrc -o dist/index.html src/index.html",
     "minify:css": "cssnano dist/css/main.css dist/css/main.min.css --no-autoprefixer --no-calc",
     "minify:js": "uglifyjs -m -c -o dist/js/main.min.js dist/js/main.js",
     "replace": "replace \"\\.(css|js)\" \".min.$1\" dist/index.html -q",
-	
     "watch": "run-p watch:*",
-	"watch:html" : "npm-watch html",
-	"watch:css" : "npm-watch css",
-	"watch:js" : "npm run js -- --watch",
-	
+    "watch:html": "onchange \"src/index.html\" -- npm run copy",
+    "watch:css": "onchange \"src/css/*.css\" -- npm run css",
+    "watch:js": "npm run js -- --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "watch": {
-    "css": {
-	  "patterns": ["src/css"],
-      "extensions": "css"
-	},
-    "html": "src/index.html"
   },
   "repository": {
     "type": "git",
@@ -73,7 +60,7 @@
     "eslint-plugin-standard": "3.0.1",
     "html-minifier": "3.5.8",
     "npm-run-all": "4.1.2",
-    "npm-watch": "0.3.0",
+    "onchange": "3.3.0",
     "postcss": "6.0.14",
     "postcss-cli": "4.1.1",
     "postcss-cssnext": "3.0.2",
@@ -85,5 +72,6 @@
     "> 1%",
     "last 2 versions",
     "IE 11"
-  ]
+  ],
+  "dependencies": {}
 }

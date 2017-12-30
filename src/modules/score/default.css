@@ -8,11 +8,13 @@
 	height: 100%;
 	user-select: none;
 }
+
 	.score__cell {
 		display: table-cell;
 		text-align: center;
 		vertical-align: middle;
 	}
+	
 	.score__value {
 		font-size: 120px;
 		font-weight: bold;

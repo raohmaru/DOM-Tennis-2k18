@@ -4,9 +4,9 @@
 @import 'utils.css';
 
 /* Components */
-@import 'ball/ball.css';
-@import 'gameboard/gameboard.css';
-@import 'ranking/ranking.css';
-@import 'score/score.css';
+@import '../modules/ball/default.css';
+@import '../modules/gameboard/default.css';
+@import '../modules/score/default.css';
+@import '../modules/ranking/default.css';
 @import 'buttons/buttons.css';
 @import 'footer/footer.css';

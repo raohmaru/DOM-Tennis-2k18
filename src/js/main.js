@@ -1,59 +1,39 @@
 import * as cfg from './config.js';
+import Ball from '../modules/ball/entity.js';
+import Gameboard from '../modules/gameboard/entity.js';
+import Score from '../modules/score/entity.js';
+import Ranking from '../modules/ranking/entity.js';
 
-const scoreDur       = 30,
-	scoreOpacityIncr = 0.02,
-	scoreScaleIncr   = 0.05,
+const
 	// quick refs
 	abs = Math.abs,
-	doc = window.document,
-	// DOM
-	$gameboard  = doc.querySelector('.gameboard'),
-	$ball         = doc.getElementById('ball'),
-	$ballLines    = $ball.querySelector('.ball__lines'),
-	$score        = doc.getElementById('score'),
-	$rankingitems = [].slice.apply(doc.querySelectorAll('.ranking__list li'));
+	doc = window.document;
 	
 // variables
-let ball = {
-		rotation: 0,
-		momentum: false,
-		freeFall: false
-	},
-	ballSpeed = {
-		x: 0,
-		y: 0
-	},
-	gameboard    = {},
-	kickCount    = 0,
-	showScore    = false,
-	scoreTimer   = 0,
-	scoreOpacity = 0,
-	scoreScale   = 0,
-	ranking      = [],
+let kickCount = 0,
+	ball,
+	gameboard,
+	score,
+	ranking,
 	startTime;
 	
 function init() {
-	ball.y      = parseInt($ball.style.top, 10);
-	ball.x      = parseInt($ball.style.left, 10);
-	ball.width  = $ball.clientWidth;
-	ball.height = $ball.clientHeight;
-	$ball.addEventListener('mouseover', ballHit);
+	ball = new Ball(doc.getElementById('ball'));
+	ball.view.addEventListener('mouseover', ballHit);
 	
-	gameboard.top    = $gameboard.clientTop;
-	gameboard.left   = $gameboard.clientLeft;
-	gameboard.width  = $gameboard.clientWidth;
-	gameboard.height = $gameboard.clientHeight;
-	gameboard.bottom = gameboard.top + gameboard.height;
-	gameboard.right  = gameboard.left + gameboard.width;
-	doc.getElementById('clearRanking').addEventListener('click', clearRanking);
+	gameboard = new Gameboard(doc.querySelector('.gameboard'));
+	score = new Score(doc.getElementById('score'));
+	ranking = new Ranking(doc.getElementById('ranking'));
+	
+	doc.getElementById('clearRanking').addEventListener('click', ranking.clear);
 	
 	startTime = window.performance.now();
 	frame();
 }
 
 function ballHit(e) {
-	ballSpeed.y = -cfg.hitPower;
-	ballSpeed.x = (ball.x + (ball.width >> 1) - e.clientX) * cfg.hitHorizMult;
+	ball.yvel = -cfg.hitPower;
+	ball.xvel = (ball.x + (ball.width >> 1) - e.clientX) * cfg.hitHorizMult;
 	ball.momentum = true;
 	ball.freeFall = true;
 	addKickCount();
@@ -71,96 +51,52 @@ function frame(currentTime) {
 	
 		if (ball.momentum) {
 			ballPhysics();
-			renderBall();
+			ball.render();
 		}
-		if (showScore) {
-			renderScore();
-		}
+		score.render();
 	}
 }
 
 function ballPhysics() {
-	ball.y += ballSpeed.y;
+	ball.y += ball.yvel;
 	if (ball.y + ball.height <= gameboard.bottom) {
-		ballSpeed.y += cfg.gravity;
+		ball.yvel += cfg.gravity;
 	} else {
 		ball.y -= ball.y + ball.height - gameboard.bottom;
-		ballSpeed.y *= -cfg.groundFriction;
-		if (ballSpeed.y > -cfg.vSpeedThreshold) {
+		ball.yvel *= -cfg.groundFriction;
+		if (ball.yvel > -cfg.vSpeedThreshold) {
 			ball.y = gameboard.bottom - ball.height;
 			ball.freeFall = false;
-			ballSpeed.y = 0;
+			ball.yvel = 0;
 		}
-		updateRanking(kickCount);
+		ranking.update(kickCount);
 		kickCount = 0;
 	}
 
-	ball.x += ballSpeed.x;
-	ballSpeed.x *= cfg.drag;
+	ball.x += ball.xvel;
+	ball.xvel *= cfg.drag;
 	if (ball.x < gameboard.left) {
 		ball.x += gameboard.left - ball.x;
-		ballSpeed.x *= -cfg.wallFriction;
+		ball.xvel *= -cfg.wallFriction;
 	} else if (ball.x + ball.width > gameboard.right) {
 		ball.x -= ball.x + ball.width - gameboard.right;
-		ballSpeed.x *= -cfg.wallFriction;
+		ball.xvel *= -cfg.wallFriction;
 	}
-	if (abs(ballSpeed.x) < cfg.hSpeedThreshold) {
-		ballSpeed.x = 0;
+	if (abs(ball.xvel) < cfg.hSpeedThreshold) {
+		ball.xvel = 0;
 	}
 	
-	ball.rotation += ballSpeed.x * 2;
+	ball.rotation += ball.xvel * 2;
 	
-	if (ballSpeed.y === 0 && ballSpeed.x === 0 && !ball.freeFall) {
+	if (ball.yvel === 0 && ball.xvel === 0 && !ball.freeFall) {
 		ball.momentum = false;
-	}
-}
-
-function renderBall() {
-	$ball.style.cssText = `
-		top: ${ball.y}px; 
-		left: ${ball.x}px;
-	`;
-	$ballLines.style.cssText = `transform: rotate(${ball.rotation}deg);`;
-}
-
-function renderScore() {
-	if (scoreTimer++ < scoreDur) {
-		if (scoreOpacity < 1) scoreOpacity += scoreOpacityIncr;
-		if (scoreScale   < 1) scoreScale += scoreScaleIncr;
-		$score.style.cssText = `
-			display: block;
-			opacity: ${scoreOpacity};
-			transform: translateZ(0) scale(${scoreScale});`;
-	} else {
-		$score.style.display = 'none';
-		showScore = false;
 	}
 }
 
 function addKickCount() {
 	kickCount++;
-	$score.textContent = kickCount;
-	showScore          = true;
-	scoreTimer         = 0;
-	scoreOpacity       = 0;
-	scoreScale         = 0.25;
-	renderScore();
-}
-
-function updateRanking(count) {
-	if ((count && !ranking[0]) || count > ranking[0]) {
-		ranking.unshift(count);
-		for (let i = 0; i < ranking.length; i++) {
-			$rankingitems[i].innerHTML = ranking[i];
-		}
-	}
-}
-
-function clearRanking() {
-	ranking = [];
-	$rankingitems.forEach(function(item) {
-		item.innerHTML = '';
-	});
+	score.update(kickCount);
+	score.render();
 }
 
 init();

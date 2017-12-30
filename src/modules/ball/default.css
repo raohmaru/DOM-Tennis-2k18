@@ -2,7 +2,7 @@
 	--ballSize: 34px;
 	--ballColorLight: #f9eb88;
 	--ballColorDark: #a0862c;
-	--ballLineColor: #fff;
+	--ballLineColor: rgba(255, 255, 255, 0.8);
 }
 
 .ball {
@@ -17,6 +17,7 @@
 	background: radial-gradient(ellipse at 35% 35%, var(--ballColorLight) 20%, var(--ballColorDark) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	transform: translateZ(0);
 }
+
 	.ball__lines {
 		position: absolute;
 		top: 0;
@@ -35,10 +36,12 @@
 			border-radius: calc(var(--ballSize) / 2);
 			border: 1px solid var(--ballLineColor);
 		}
+		
 		&::before {
 			top: -20px;
 			left: -20px;
 		}
+		
 		&::after {
 			top: 11px;
 			left: 11px;

@@ -10,7 +10,7 @@
     "clean": "del-cli dist/*",
     "copy": "copy-cli src/*.html dist/",
     "css": "postcss -d dist/css/ src/css/main.css",
-    "js": "babel src/js/ --out-dir dist/js/ --source-maps",
+    "js": "browserify -e src/js/main.js -t [ babelify ] -d | exorcist dist/js/main.js.map > dist/js/main.js",
     "lint": "npm-run-all -l lint:*",
     "lint:html": "htmlhint src/index.html",
     "lint:css": "stylelint src/css/*.css",
@@ -23,7 +23,7 @@
     "watch": "run-p watch:*",
     "watch:html": "onchange \"src/index.html\" -- npm run copy",
     "watch:css": "onchange \"src/css/*.css\" -- npm run css",
-    "watch:js": "npm run js -- --watch",
+    "watch:js": "onchange \"src/js/*.js\" -- npm run js",
     "start": "http-server dist/ -o --silent",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -51,8 +51,10 @@
     "IE 11"
   ],
   "devDependencies": {
-    "babel-cli": "6.26.0",
+    "babel-core": "6.26.0",
     "babel-preset-env": "1.6.1",
+    "babelify": "8.0.0",
+    "browserify": "14.5.0",
     "copy": "0.3.1",
     "cross-env": "5.1.3",
     "cssnano": "3.10.0",
@@ -65,6 +67,7 @@
     "eslint-plugin-node": "5.2.1",
     "eslint-plugin-promise": "3.6.0",
     "eslint-plugin-standard": "3.0.1",
+    "exorcist": "1.0.0",
     "html-minifier": "3.5.8",
     "http-server": "0.10.0",
     "npm-run-all": "4.1.2",

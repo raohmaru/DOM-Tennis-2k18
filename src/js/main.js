@@ -1,15 +1,6 @@
-(function() {
-// const
-const gravity        = 0.5,
-	drag             = 0.98,
-	groundFriction   = 0.7,
-	wallFriction     = 1,
-	hitPower         = 10,
-	hitHorizMult     = 1,
-	fpsInterval      = 1000 / 60,
-	vSpeedThreshold  = 1,
-	hSpeedThreshold  = 0.2,
-	scoreDur         = 30,
+import * as cfg from './config.js';
+
+const scoreDur       = 30,
 	scoreOpacityIncr = 0.02,
 	scoreScaleIncr   = 0.05,
 	// quick refs
@@ -61,8 +52,8 @@ function init() {
 }
 
 function ballHit(e) {
-	ballSpeed.y = -hitPower;
-	ballSpeed.x = (ball.x + (ball.width >> 1) - e.clientX) * hitHorizMult;
+	ballSpeed.y = -cfg.hitPower;
+	ballSpeed.x = (ball.x + (ball.width >> 1) - e.clientX) * cfg.hitHorizMult;
 	ball.momentum = true;
 	ball.freeFall = true;
 	addKickCount();
@@ -73,16 +64,16 @@ function frame(currentTime) {
 	// calc elapsed time since last loop
 	let elapsed = currentTime - startTime;
 	// if enough time has elapsed, draw the next frame
-	if(elapsed > fpsInterval) {
+	if (elapsed > cfg.fpsInterval) {
 		// Get ready for next frame by setting startTime=currentTime, but...
-		// Also, adjust for fpsInterval not being multiple of 16.67
-		startTime = currentTime - (elapsed % fpsInterval);
+		// Also, adjust for cfg.fpsInterval not being multiple of 16.67
+		startTime = currentTime - (elapsed % cfg.fpsInterval);
 	
-		if(ball.momentum) {
+		if (ball.momentum) {
 			ballPhysics();
 			renderBall();
 		}
-		if(showScore) {
+		if (showScore) {
 			renderScore();
 		}
 	}
@@ -90,12 +81,12 @@ function frame(currentTime) {
 
 function ballPhysics() {
 	ball.y += ballSpeed.y;
-	if(ball.y + ball.height <= gameboard.bottom) {
-		ballSpeed.y += gravity;
+	if (ball.y + ball.height <= gameboard.bottom) {
+		ballSpeed.y += cfg.gravity;
 	} else {
 		ball.y -= ball.y + ball.height - gameboard.bottom;
-		ballSpeed.y *= -groundFriction;
-		if(ballSpeed.y > -vSpeedThreshold) {
+		ballSpeed.y *= -cfg.groundFriction;
+		if (ballSpeed.y > -cfg.vSpeedThreshold) {
 			ball.y = gameboard.bottom - ball.height;
 			ball.freeFall = false;
 			ballSpeed.y = 0;
@@ -105,21 +96,21 @@ function ballPhysics() {
 	}
 
 	ball.x += ballSpeed.x;
-	ballSpeed.x *= drag;
-	if(ball.x < gameboard.left) {
+	ballSpeed.x *= cfg.drag;
+	if (ball.x < gameboard.left) {
 		ball.x += gameboard.left - ball.x;
-		ballSpeed.x *= -wallFriction;
-	} else if(ball.x + ball.width > gameboard.right) {
+		ballSpeed.x *= -cfg.wallFriction;
+	} else if (ball.x + ball.width > gameboard.right) {
 		ball.x -= ball.x + ball.width - gameboard.right;
-		ballSpeed.x *= -wallFriction;
+		ballSpeed.x *= -cfg.wallFriction;
 	}
-	if(abs(ballSpeed.x) < hSpeedThreshold) {
+	if (abs(ballSpeed.x) < cfg.hSpeedThreshold) {
 		ballSpeed.x = 0;
 	}
 	
 	ball.rotation += ballSpeed.x * 2;
 	
-	if(ballSpeed.y === 0 && ballSpeed.x === 0 && !ball.freeFall) {
+	if (ballSpeed.y === 0 && ballSpeed.x === 0 && !ball.freeFall) {
 		ball.momentum = false;
 	}
 }
@@ -133,9 +124,9 @@ function renderBall() {
 }
 
 function renderScore() {
-	if(scoreTimer++ < scoreDur) {
-		if(scoreOpacity < 1) scoreOpacity += scoreOpacityIncr;
-		if(scoreScale   < 1) scoreScale += scoreScaleIncr;
+	if (scoreTimer++ < scoreDur) {
+		if (scoreOpacity < 1) scoreOpacity += scoreOpacityIncr;
+		if (scoreScale   < 1) scoreScale += scoreScaleIncr;
 		$score.style.cssText = `
 			display: block;
 			opacity: ${scoreOpacity};
@@ -157,9 +148,9 @@ function addKickCount() {
 }
 
 function updateRanking(count) {
-	if((count && !ranking[0]) || count > ranking[0]) {
+	if ((count && !ranking[0]) || count > ranking[0]) {
 		ranking.unshift(count);
-		for(let i = 0; i < ranking.length; i++) {
+		for (let i = 0; i < ranking.length; i++) {
 			$rankingitems[i].innerHTML = ranking[i];
 		}
 	}
@@ -173,4 +164,3 @@ function clearRanking() {
 }
 
 init();
-})();

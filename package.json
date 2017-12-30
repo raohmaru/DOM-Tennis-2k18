@@ -1,5 +1,6 @@
 {
   "name": "domtennis2k18",
+  "title": "DOM Tennis 2k18",
   "version": "1.0.0",
   "description": "HTML + CSS + JavaScript tennis game",
   "main": "index.html",
@@ -23,6 +24,7 @@
     "watch:html": "onchange \"src/index.html\" -- npm run copy",
     "watch:css": "onchange \"src/css/*.css\" -- npm run css",
     "watch:js": "npm run js -- --watch",
+    "start": "http-server dist/ -o --silent",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -43,6 +45,11 @@
     "url": "https://github.com/raohmaru/DOM-Tennis-2k18/issues"
   },
   "homepage": "https://github.com/raohmaru/DOM-Tennis-2k18#readme",
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "IE 11"
+  ],
   "devDependencies": {
     "babel-cli": "6.26.0",
     "babel-preset-env": "1.6.1",
@@ -59,6 +66,7 @@
     "eslint-plugin-promise": "3.6.0",
     "eslint-plugin-standard": "3.0.1",
     "html-minifier": "3.5.8",
+    "http-server": "0.10.0",
     "npm-run-all": "4.1.2",
     "onchange": "3.3.0",
     "postcss": "6.0.14",
@@ -68,10 +76,5 @@
     "replace": "0.3.0",
     "stylelint": "8.4.0"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "IE 11"
-  ],
   "dependencies": {}
 }

@@ -44,6 +44,9 @@ Will clean dist/ folder.
 `npm run watch`  
 Will watch for changes in src/ folder and run the appropriate task when a file is modified.
 
+`npm start`  
+Will start a dev server at 127.0.0.1:8080 with path to dist/ folder.
+
 ## Browser Support
 The game supports IE 11, Edge, Firefox 15+, Chrome 20+, Safari 8+.
 In order to support older browsers, you need polyfills for the following JavaScript features:

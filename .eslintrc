@@ -76,10 +76,7 @@ rules:
   keyword-spacing:
   - error
   - before: true
-    after: false
-    overrides:
-      else:
-        after: true
+    after: true
   new-cap:
   - error
   - newIsCap: true

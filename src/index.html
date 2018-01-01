@@ -2,59 +2,50 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title>DOM Tennis 2k18</title>
 	<meta name="description" content="Tennis game made with JavaScript and using the DOM">
-	<meta name="viewport" content="width=device-width, initial-scale=1">	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
 
 <div class="wrapper">
-	<main class="gameboard" role="main">
+	<main class="gameboard gameboard--default" role="main">
+		<header class="ranking">
+			Top Score: <span class="ranking__top">0</span>
+		</header>
+		
 		<div class="score">
 			<div class="score__cell">
 				<span id="score" class="score__value"></span>
 			</div>
 		</div>
-		<div id="ball" class="ball" style="left: 166px; top: 266px;"><div class="ball__lines"></div></div>
+
+		<aside class="options" role="complementary">
+			<div class="options__block"></div>
+			<div class="options__toolbar">
+				<span class="options__action" data-opt-action="toogleOpen"><img src="img/cogwheel.svg" width="24" height="24" alt="Options" /></span>				
+			</div>
+			
+			<section class="options__section">
+				<h2 class="options__sectionTitle">Options</h2>
+				<div class="options__sectionContent">
+					Game speed: <span id="speedLabel">Normal</span>
+				</div>
+			</section>
+			<section class="options__section">
+				<div class="options__sectionContent">
+					<input type="button" class="button button-warning" id="clearRanking" value="Clear top score">
+				</div>
+			</section>
+		</aside>
+		
+		<div id="ball" class="ball" style="left: 166px; top: 366px;"><div class="ball__lines"></div></div>
 	</main>
-
-	<aside class="section" id="ranking" role="complementary">
-		<p class="section__title">Ranking</p>
-		<div class="column">
-			<ol class="ranking__list">
-				<li class="ranking__top"></li>
-				<li class="ranking__top"></li>
-				<li class="ranking__top"></li>
-				<li></li>
-				<li></li>
-			</ol>
-		</div>
-		<div class="column">
-			<ol class="ranking__list" start="6">
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-			</ol>
-		</div>
-		<div class="align-right">
-			<input type="button" class="button-clear" id="clearRanking" value="Clear ranking">
-		</div>
-	</aside>
-
-	<aside class="section" role="complementary">
-		<p class="section__title">Options</p>
-		<div>
-			Game speed: <span id="speedLabel">Normal</span>
-		</div>	  
-	</aside>
 	
 	<footer class="page-footer" role="contentinfo">
-		<p class="copyright">&copy; 2018 Raúl Parralejo</p>
+		<p class="copyright">&copy;2018 Raúl Parralejo &#9679; <a href="https://github.com/raohmaru/DOM-Tennis-2k18" target="_blank">Source code</a></p>
 	</footer>
 </div>
 	

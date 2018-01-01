@@ -8,5 +8,9 @@
 @import '../modules/gameboard/default.css';
 @import '../modules/score/default.css';
 @import '../modules/ranking/default.css';
-@import 'buttons/buttons.css';
-@import 'footer/footer.css';
+@import '../modules/buttons/default.css';
+@import '../modules/footer/default.css';
+@import '../modules/options/default.css';
+
+/* Themes */
+@import 'themes/theme.default.css';

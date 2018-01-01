@@ -1,0 +1,77 @@
+:root {
+	--optionsWidth: 210px;
+	--optionsSecPadd: 0.5em 10px;
+}
+
+.options {
+	position: absolute;
+	top: 0;
+	z-index: 3;
+	right: -var(--optionsWidth);
+	width: var(--optionsWidth);
+	height: 100%;
+	transition: right .3s ease;
+}
+	
+.options--open {
+	right: 0;
+	
+	& .options__toolbar {
+		right: 0;
+		opacity: 1;
+		transition: right .15s ease-out;
+	}
+	
+	& .options__block {
+		display: block;		
+	}
+}
+
+	.options__block {
+		display: none;
+		position: absolute;
+		top: 0;
+		right: 100%;
+		bottom: 0;
+		left: -100vw;
+	}
+
+	.options__toolbar {
+		position: absolute;
+		top: 0;
+		right: 100%;
+		z-index: 1;
+		opacity: 0.3;
+		transition: right .3s ease 0.15s;
+		
+		&:hover,
+		&:focus {
+			opacity: 1;
+		}
+	}
+	
+		.options__action {
+			display: inline-block;
+			padding: 4px;
+			cursor: pointer;
+		}
+	
+	.options__section {
+		position: relative;
+		
+		&:not(:first-of-type) {
+			margin-top: 0.5em;
+		}
+	}
+	
+		.options__sectionTitle {
+			margin: 0;
+			padding: var(--optionsSecPadd);
+			font-size: 1em;
+			border-bottom: 1px solid rgba(0,0,0,0.2);
+		}
+		
+		.options__sectionContent {
+			padding: var(--optionsSecPadd);
+			font-size: var(--fzSmall);
+		}

@@ -1,7 +1,7 @@
 export default class {
 	constructor(view) {
 		// view
-		this.view      = view;
+		this.view   = view;
 		// props
 		this.top    = view.clientTop;
 		this.left   = view.clientLeft;

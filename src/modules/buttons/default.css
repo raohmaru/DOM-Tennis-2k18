@@ -1,0 +1,17 @@
+.button {
+	padding: 0.4em 10px;
+	font-weight: bold;
+	border: 0;
+	cursor: pointer;
+}
+
+.button-warning {
+	color: #fff;
+	background-color: #b35606;	
+	transition: background-color .15s linear;
+	
+	&:hover,
+	&:focus {
+		background-color: #9f3609;
+	}
+}

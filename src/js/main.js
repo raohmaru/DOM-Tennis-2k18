@@ -3,6 +3,7 @@ import Ball from '../modules/ball/entity.js';
 import Gameboard from '../modules/gameboard/entity.js';
 import Score from '../modules/score/entity.js';
 import Ranking from '../modules/ranking/entity.js';
+import Options from '../modules/options/entity.js';
 
 const
 	// quick refs
@@ -15,6 +16,7 @@ let kickCount = 0,
 	gameboard,
 	score,
 	ranking,
+	options,
 	startTime;
 	
 function init() {
@@ -23,9 +25,10 @@ function init() {
 	
 	gameboard = new Gameboard(doc.querySelector('.gameboard'));
 	score = new Score(doc.getElementById('score'));
-	ranking = new Ranking(doc.getElementById('ranking'));
+	ranking = new Ranking(doc.querySelector('.ranking'));
+	options = new Options(doc.querySelector('.options'));
 	
-	doc.getElementById('clearRanking').addEventListener('click', ranking.clear);
+	doc.getElementById('clearRanking').addEventListener('click', ranking.clear.bind(ranking));
 	
 	startTime = window.performance.now();
 	frame();

@@ -10,7 +10,7 @@ export default class {
 		this.scores = [];
 		
 		let savedScore = localStorage.getItem(LS_TOP_SCORE);
-		if(savedScore) {
+		if (savedScore) {
 			this.update(parseInt(savedScore, 10));
 		}
 	}

@@ -12,6 +12,7 @@ globals:
   document: false
   navigator: false
   window: false
+  localStorage: false
 rules:
   accessor-pairs: error
   arrow-spacing:

@@ -12,3 +12,25 @@ body {
 main {  /* IE11 */
   display: block;
 }
+
+a {
+	position: relative;
+	color: #000;
+	text-decoration: none;
+	
+	&::after {
+		position: absolute;
+		left: 50%;
+		bottom: 0;
+	    content: "";
+		width: 0%;
+		border-bottom: solid 1px #000;		
+		transition: all 0.3s ease;
+	}
+	
+	&:hover::after,
+	&:focus::after {
+		left: 0;
+		width: 100%;
+	}
+}

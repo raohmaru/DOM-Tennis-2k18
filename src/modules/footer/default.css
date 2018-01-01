@@ -1,3 +1,14 @@
-.copyright {
+.pageinfo {
+	margin: 0;
 	font-size: var(--fzSmall);
 }
+
+	.pageinfo__item {
+		display: inline-block;
+		
+		&:nth-child(n+2)::before {
+			content: "\26AC\0020";
+			margin: 0 2px;
+		}
+	}
+	

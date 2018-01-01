@@ -11,6 +11,7 @@
 @import '../modules/buttons/default.css';
 @import '../modules/footer/default.css';
 @import '../modules/options/default.css';
+@import '../modules/title/default.css';
 
 /* Themes */
 @import 'themes/theme.default.css';

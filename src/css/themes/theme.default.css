@@ -1,0 +1,11 @@
+.gameboard--default {
+	background-color: #b0dfae;
+
+	& .ranking {
+		color: #fff;
+	}
+	
+	& .options {
+		background-color: rgba(0,0,0,0.1);
+	}
+}

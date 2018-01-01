@@ -1,8 +1,11 @@
-.ranking__list {
-	margin-top: 0;
-	list-style-type: decimal;
+.ranking {
+    width: 120px;
+    margin: 0 auto;
+	padding: 0.3em;
+	font-size: var(--fzSmall);
+	text-align: center;
+    background-color: rgba(0,0,0,0.5);
 }
-
 	.ranking__top {
 		font-weight: 700;
 	}

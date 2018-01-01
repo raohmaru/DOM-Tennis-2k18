@@ -1,25 +1,21 @@
 export default class {
 	constructor(view) {
 		// view
-		this.view      = view;
-		this.viewItems = [].slice.apply(view.querySelectorAll('.ranking__list li'));
+		this.view         = view;
+		this.viewTopScore = view.querySelector('.ranking__top');
 		// props
-		this.items = [];
+		this.scores = [];
 	}
 
 	update(count) {
-		if ((count && !this.items[0]) || count > this.items[0]) {
-			this.items.unshift(count);
-			for (let i = 0; i < this.items.length; i++) {
-				this.viewItems[i].innerHTML = this.items[i];
-			}
+		if ((count && !this.scores[0]) || count > this.scores[0]) {
+			this.scores.unshift(count);
+			this.viewTopScore.innerHTML = count;
 		}
 	}
 
 	clear() {
-		this.items.length = 0;
-		this.viewItems.forEach(item => {
-			item.innerHTML = '';
-		});
+		this.scores.length = 0;
+		this.viewTopScore.innerHTML = 0;
 	}
 };

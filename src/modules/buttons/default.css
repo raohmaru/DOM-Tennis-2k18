@@ -7,8 +7,8 @@
 
 .button-warning {
 	color: #fff;
-	background-color: #b35606;	
-	transition: background-color .15s linear;
+	background-color: #b35606;
+	transition: background-color 0.15s linear;
 	
 	&:hover,
 	&:focus {

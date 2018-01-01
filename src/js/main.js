@@ -16,7 +16,7 @@ let kickCount = 0,
 	gameboard,
 	score,
 	ranking,
-	options,
+	options,  // eslint-disable-line no-unused-vars
 	startTime;
 	
 function init() {
@@ -24,9 +24,9 @@ function init() {
 	ball.view.addEventListener('mouseover', ballHit);
 	
 	gameboard = new Gameboard(doc.querySelector('.gameboard'));
-	score = new Score(doc.getElementById('score'));
-	ranking = new Ranking(doc.querySelector('.ranking'));
-	options = new Options(doc.querySelector('.options'));
+	score     = new Score(doc.getElementById('score'));
+	ranking   = new Ranking(doc.querySelector('.ranking'));
+	options   = new Options(doc.querySelector('.options'));
 	
 	doc.getElementById('clearRanking').addEventListener('click', ranking.clear.bind(ranking));
 	

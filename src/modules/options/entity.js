@@ -13,7 +13,7 @@ export default class {
 	execAction(e) {
 		const action = e.currentTarget.dataset.optAction;
 		
-		switch(action) {
+		switch (action) {
 			case AC_TOGGLE_OPEN:
 				this.toggleOpen();
 				break;

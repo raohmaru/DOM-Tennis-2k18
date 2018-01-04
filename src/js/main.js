@@ -1,9 +1,10 @@
-import * as cfg from './config.js';
-import Ball from '../modules/ball/entity.js';
+import * as cfg  from './config.js';
+import _         from './util.js';
+import Ball      from '../modules/ball/entity.js';
 import Gameboard from '../modules/gameboard/entity.js';
-import Score from '../modules/score/entity.js';
-import Ranking from '../modules/ranking/entity.js';
-import Options from '../modules/options/entity.js';
+import Score     from '../modules/score/entity.js';
+import Ranking   from '../modules/ranking/entity.js';
+import Options   from '../modules/options/entity.js';
 
 const
 	// quick refs
@@ -21,7 +22,7 @@ let kickCount = 0,
 	
 function init() {
 	ball = new Ball(doc.getElementById('ball'));
-	ball.view.addEventListener('mouseover', ballHit);
+	ball.view.addEventListener('mouseover', _.throttle(ballHit, 100));
 	
 	gameboard = new Gameboard(doc.querySelector('.gameboard'));
 	score     = new Score(doc.getElementById('score'));

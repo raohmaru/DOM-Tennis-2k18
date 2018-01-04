@@ -2,12 +2,37 @@ export default class {
 	constructor(view) {
 		// view
 		this.view   = view;
-		// props
-		this.top    = view.clientTop;
-		this.left   = view.clientLeft;
-		this.width  = view.clientWidth;
-		this.height = view.clientHeight;
-		this.bottom = this.top + this.height;
-		this.right  = this.left + this.width;
+	}
+	
+	get width() {
+		return this.view.clientWidth;
+	}
+	
+	get height() {
+		return this.view.clientHeight;
+	}
+	
+	get top() {
+		return this.view.clientTop;
+	}
+	
+	get right() {
+		return this.left + this.width;
+	}
+	
+	get bottom() {
+		return this.top + this.height;
+	}
+	
+	get left() {
+		return this.view.clientLeft;
+	}
+	
+	get offsetTop() {
+		return this.view.offsetTop;
+	}
+	
+	get offsetLeft() {
+		return this.view.offsetLeft;
 	}
 };

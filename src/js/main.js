@@ -21,8 +21,10 @@ let kickCount = 0,
 	startTime;
 	
 function init() {
+	let inputEvent = 'ontouchstart' in window ? 'touchstart' : 'mouseover';
+	
 	ball = new Ball(doc.getElementById('ball'));
-	ball.view.addEventListener('mouseover', _.throttle(ballHit, 100));
+	ball.view.addEventListener(inputEvent, _.throttle(ballHit, 100));
 	
 	gameboard = new Gameboard(doc.querySelector('.gameboard'));
 	score     = new Score(doc.getElementById('score'));
@@ -36,8 +38,15 @@ function init() {
 }
 
 function ballHit(e) {
+	let clientX;
+	if (e.touches) {
+		clientX = e.touches[0].clientX;
+	} else {
+		clientX = e.clientX;
+	}
+	
 	ball.yvel = -cfg.hitPower;
-	ball.xvel = (ball.x + (ball.width >> 1) - e.clientX) * cfg.hitHorizMult;
+	ball.xvel = (ball.x + (ball.width >> 1) - (clientX - gameboard.offsetLeft)) * cfg.hitHorizMult;
 	ball.momentum = true;
 	ball.freeFall = true;
 	addKickCount();

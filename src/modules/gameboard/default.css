@@ -2,4 +2,6 @@
 	position: relative;
 	height: 400px;
 	overflow: hidden;
+	/* Eliminate 300 ms click delay */
+	touch-action: manipulation;
 }

@@ -10,7 +10,8 @@
 	right: -var(--optionsWidth);
 	width: var(--optionsWidth);
 	height: 100%;
-	transition: right 0.3s ease;
+	transform: translateZ(0);
+	transition: transform 0.3s ease;
 }
 
 	.options__block {
@@ -63,7 +64,7 @@
 		}
 
 .options--open {
-	right: 0;
+	transform: translateX(-var(--optionsWidth));
 
 	& .options__toolbar {
 		right: 0;

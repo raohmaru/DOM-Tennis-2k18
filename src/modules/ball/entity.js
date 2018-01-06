@@ -4,8 +4,8 @@ export default class {
 		this.view      = view;
 		this.viewLines = view.querySelector('.ball__lines');
 		// props
-		this.y        = parseInt(view.style.top, 10);
-		this.x        = parseInt(view.style.left, 10);
+		this.y        = 0;
+		this.x        = 0;
 		this.width    = view.clientWidth;
 		this.height   = view.clientHeight;
 		this.rotation = 0;
@@ -18,8 +18,7 @@ export default class {
 	
 	render() {
 		this.view.style.cssText = `
-			top: ${this.y}px;
-			left: ${this.x}px;
+			transform: translate3d(${this.x}px, ${this.y}px, 0);
 		`;
 		this.viewLines.style.cssText = `transform: rotate(${this.rotation}deg);`;
 	}

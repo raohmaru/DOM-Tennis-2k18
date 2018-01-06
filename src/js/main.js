@@ -1,4 +1,5 @@
 import * as cfg  from './config.js';
+import * as env  from './env.js';
 import _         from './util.js';
 import Ball      from '../modules/ball/entity.js';
 import Gameboard from '../modules/gameboard/entity.js';
@@ -21,15 +22,18 @@ let kickCount = 0,
 	startTime;
 	
 function init() {
-	let inputEvent = 'ontouchstart' in window ? 'touchstart' : 'mouseover';
-	
-	ball = new Ball(doc.getElementById('ball'));
-	ball.view.addEventListener(inputEvent, _.throttle(ballHit, 100));
+	let inputEvent = env.isTouch ? 'touchstart' : 'mouseover';
 	
 	gameboard = new Gameboard(doc.querySelector('.gameboard'));
 	score     = new Score(doc.getElementById('score'));
 	ranking   = new Ranking(doc.querySelector('.ranking'));
 	options   = new Options(doc.querySelector('.options'));
+	
+	ball = new Ball(doc.getElementById('ball'));
+	ball.x = gameboard.left + (gameboard.width >> 1) - ball.width;
+	ball.y = gameboard.bottom - ball.height;
+	ball.render();
+	ball.view.addEventListener(inputEvent, _.throttle(ballHit, 100));
 	
 	doc.getElementById('clearRanking').addEventListener('click', ranking.clear.bind(ranking));
 	

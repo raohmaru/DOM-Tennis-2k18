@@ -1,6 +1,7 @@
 import * as cfg  from './config.js';
 import * as env  from './env.js';
-import _         from './lib/util.js';
+import * as _    from './lib/util.js';
+import $         from './lib/dom.js';
 import Beat      from './lib/beat.js';
 import Ball      from '../modules/ball/ball.entity.js';
 import Gameboard from '../modules/gameboard/gameboard.entity.js';
@@ -10,8 +11,7 @@ import Options   from '../modules/options/options.entity.js';
 
 const
 	// quick refs
-	abs = Math.abs,
-	doc = window.document;
+	abs = Math.abs;
 	
 // variables
 let ball,
@@ -24,18 +24,18 @@ let ball,
 function init() {
 	let inputEvent = env.isTouch ? 'touchstart' : 'mouseover';
 	
-	gameboard = new Gameboard(doc.querySelector('.gameboard'));
-	score     = new Score(doc.getElementById('score'));
-	ranking   = new Ranking(doc.querySelector('.ranking'));
-	options   = new Options(doc.querySelector('.options'));
+	gameboard = new Gameboard($('.gameboard')[0]);
+	score     = new Score($('#score'));
+	ranking   = new Ranking($('.ranking')[0]);
+	options   = new Options($('.options')[0]);
 	
-	ball = new Ball(doc.getElementById('ball'));
+	ball = new Ball($('#ball'));
 	ball.x = gameboard.left + (gameboard.width >> 1) - ball.width;
 	ball.y = gameboard.bottom - ball.height;
 	ball.render();
 	ball.view.addEventListener(inputEvent, _.throttle(ballHit, 100));
 	
-	doc.getElementById('clearRanking').addEventListener('click', ranking.clear.bind(ranking));
+	$('#clearRanking').addEventListener('click', ranking.clear.bind(ranking));
 	window.addEventListener('resize', winResizeHandler);
 	
 	beat = new Beat(cfg.fps, frame);

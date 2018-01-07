@@ -1,21 +1,26 @@
+import $ from '../../js/lib/dom.js';
+
 const
-	AC_TOGGLE_OPEN = 'toogleOpen';
+	AC_TOGGLE_OPEN = 'toogleOpen',
+	AC_CLOSE       = 'close';
 
 export default class {
 	constructor(view) {
-		// view
 		this.view = view;
-		// props
-		view.querySelector('.options__action').addEventListener('click', this.execAction.bind(this));
-		view.querySelector('.options__block').addEventListener('click', this.close.bind(this));
+		
+		$('[data-opt-action]').forEach( el => el.addEventListener('click', this.execAction.bind(this)));
 	}
 	
 	execAction(e) {
-		const action = e.currentTarget.dataset.optAction;
+		let action = e.currentTarget.dataset.optAction;
 		
 		switch (action) {
 			case AC_TOGGLE_OPEN:
 				this.toggleOpen();
+				break;
+				
+			case AC_CLOSE:
+				this.close();
 				break;
 		}
 	}

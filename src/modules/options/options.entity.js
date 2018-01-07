@@ -8,7 +8,7 @@ export default class {
 	constructor(view) {
 		this.view = view;
 		
-		$('[data-opt-action]').forEach( el => el.addEventListener('click', this.execAction.bind(this)));
+		$('[data-opt-action]').forEach(el => el.addEventListener('click', this.execAction.bind(this)));
 	}
 	
 	execAction(e) {

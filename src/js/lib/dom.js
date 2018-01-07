@@ -14,7 +14,7 @@ export default function $(elOrSelector, selector) {
 		return el.getElementById(selector.substr(idx + 1));
 	}
 	
-	els = el.querySelectorAll(selector);	
+	els = el.querySelectorAll(selector);
 	arr = [];
 	for (let i = 0, len = arr.length = els.length; i < len; i++) {
 		arr[i] = els[i];

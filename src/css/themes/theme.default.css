@@ -49,4 +49,12 @@
 			}
 		}
 	}
+	
+	& .score__value {		
+		color: #e5f1e4;
+		
+		@media (--small-viewport) {
+			color: #fff;
+		}
+	}
 }

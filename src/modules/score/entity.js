@@ -1,7 +1,10 @@
+import * as env  from '../../js/env.js';
+
 const
 	DURATION     = 30,
 	OPACITY_INCR = 0.02,
-	SCALE_INCR   = 0.05;
+	SCALE_INCR   = 0.05,
+	SCALE_MULT   = 200;
 
 export default class {
 	constructor(view) {
@@ -22,12 +25,21 @@ export default class {
 	render() {
 		if (this._visible) {
 			if (this._timer++ < DURATION) {
-				if (this._opacity < 1) this._opacity += OPACITY_INCR;
-				if (this._scale   < 1) this._scale   += SCALE_INCR;
-				this.view.style.cssText = `
-					display: block;
-					opacity: ${this._opacity};
-					transform: translateZ(0) scale(${this._scale});`;
+				let cssStr = 'display: block;';
+				
+				if (this._scale < 1) {
+					this._scale += SCALE_INCR;
+				}
+				cssStr += `transform: perspective(500px) translateZ(${this._scale * SCALE_MULT}px);`;
+				
+				if(!env.isTouch) {					
+					if (this._opacity < 1) {
+						this._opacity += OPACITY_INCR;
+					}
+					cssStr += `opacity: ${this._opacity};`;
+				}
+				
+				this.view.style.cssText = cssStr;
 			} else {
 				this.view.style.display = 'none';
 				this._visible = false;
@@ -39,7 +51,7 @@ export default class {
 		this.view.textContent = this._current;
 		this._timer   = 0;
 		this._opacity = 0;
-		this._scale   = 0.25;
+		this._scale   = 0;
 		this._visible = true;
 	}
 	

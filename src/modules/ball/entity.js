@@ -30,9 +30,8 @@ export default class {
 		return this.y + this.height;
 	}
 	
-	
 	render() {
 		this.view.style.cssText = `transform: translate3d(${this.x}px, ${this.y}px, 0);`;
-		this.viewLines.style.cssText = `transform: rotate(${this.rotation}deg);`;
+		this.viewLines.style.cssText = `transform: rotateZ(${this.rotation}deg);`;
 	}
 };

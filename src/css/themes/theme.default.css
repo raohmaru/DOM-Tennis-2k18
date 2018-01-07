@@ -1,5 +1,5 @@
 .theme-default {
-	background-color: #000;
+	background-color: #3c2410;
 	
 	@media (--small-viewport) {
 		background-color: #fff;

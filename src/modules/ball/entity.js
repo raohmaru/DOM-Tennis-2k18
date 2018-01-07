@@ -6,14 +6,20 @@ export default class {
 		// props
 		this.y        = 0;
 		this.x        = 0;
-		this.width    = view.clientWidth;
-		this.height   = view.clientHeight;
 		this.rotation = 0;
 		// physics
 		this.yvel     = 0;
 		this.xvel     = 0;
 		this.momentum = false;
 		this.freeFall = false;
+	}
+	
+	get width() {
+		return this.view.clientWidth;
+	}
+	
+	get height() {
+		return this.view.clientHeight;
 	}
 	
 	get right() {

@@ -7,7 +7,7 @@ export default class {
 		this.view         = view;
 		this.viewTopScore = view.querySelector('.ranking__top');
 		// props
-		this.scores = [];
+		this._scores = [];
 		
 		let savedScore = localStorage.getItem(LS_TOP_SCORE);
 		if (savedScore) {
@@ -16,15 +16,15 @@ export default class {
 	}
 
 	update(newScore) {
-		if ((newScore && !this.scores[0]) || newScore > this.scores[0]) {
-			this.scores.unshift(newScore);
+		if ((newScore && !this._scores[0]) || newScore > this._scores[0]) {
+			this._scores.unshift(newScore);
 			this.viewTopScore.innerHTML = newScore;
 			localStorage.setItem(LS_TOP_SCORE, newScore);
 		}
 	}
 
 	clear() {
-		this.scores.length = 0;
+		this._scores.length = 0;
 		this.viewTopScore.innerHTML = 0;
 		localStorage.setItem(LS_TOP_SCORE, 0);
 	}

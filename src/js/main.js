@@ -14,8 +14,7 @@ const
 	doc = window.document;
 	
 // variables
-let kickCount = 0,
-	ball,
+let ball,
 	gameboard,
 	score,
 	ranking,
@@ -77,8 +76,8 @@ function ballPhysics() {
 			ball.freeFall = false;
 			ball.yvel = 0;
 		}
-		ranking.update(kickCount);
-		kickCount = 0;
+		ranking.update(score.current);
+		score.reset();
 	}
 
 	ball.x += ball.xvel;
@@ -94,7 +93,9 @@ function ballPhysics() {
 		ball.xvel = 0;
 	}
 	
-	ball.rotation += ball.xvel * 2;
+	if(ball.xvel !== 0) {
+		ball.rotation += ball.xvel * 2;		
+	}
 	
 	if (ball.yvel === 0 && ball.xvel === 0 && !ball.freeFall) {
 		ball.momentum = false;
@@ -102,8 +103,7 @@ function ballPhysics() {
 }
 
 function addKickCount() {
-	kickCount++;
-	score.update(kickCount);
+	score.add(1).update();
 	score.render();
 }
 

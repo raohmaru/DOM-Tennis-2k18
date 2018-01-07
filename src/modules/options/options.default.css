@@ -12,7 +12,7 @@
 	height: 100%;
 	transform: translateZ(0);
 	transition: transform 0.3s ease;
-	
+
 	@media (--small-viewport) {
 		width: var(--optionsWidth);
 	}
@@ -39,12 +39,29 @@
 		&:focus {
 			opacity: 1;
 		}
+		
+
+		& .options__action::after {
+			width: 34px;
+			height: 34px;
+
+			@media (--small-viewport) {
+				width: 24px;
+				height: 24px;
+			}
+		}
 	}
 
 		.options__action {
 			display: inline-block;
 			padding: 4px;
 			cursor: pointer;
+		}
+
+		.options__close {
+			position: absolute;
+			right: 0;
+			z-index: 1;
 		}
 
 	.options__section {
@@ -71,8 +88,7 @@
 	transform: translateX(-100%);
 
 	& .options__toolbar {
-		right: 0;
-		opacity: 1;
+		right: -15%;
 		transition: right 0.15s ease-out;
 	}
 

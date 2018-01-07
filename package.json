@@ -5,13 +5,14 @@
   "description": "HTML + CSS + JavaScript tennis game",
   "main": "index.html",
   "scripts": {
-    "build": "npm-run-all -l scaffold html css js copy",
-    "build:prod": "cross-env NODE_ENV=production npm-run-all -l clean scaffold lint css js minify copy",
+    "build": "npm-run-all -l scaffold html css js svg",
+    "build:prod": "cross-env NODE_ENV=production npm-run-all -l clean scaffold lint css js minify svg",
     "clean": "del-cli dist/*",
     "scaffold": "make-dir dist/js",
     "html": "copy-cli src/*.html dist/",
     "css": "postcss -d dist/css/ src/css/main.css",
     "js": "browserify -e src/js/main.js -t [ babelify ] -d | exorcist dist/js/main.js.map > dist/js/main.js",
+    "svg": "svg-sprite --stack --stack-dest dist/img/ --stack-sprite sprite.svg src/img/*.svg",
     "copy": "copy-cli src/img/** dist/img/",
     "lint": "npm-run-all -l lint:*",
     "lint:html": "htmlhint src/index.html",
@@ -83,7 +84,8 @@
     "postcss-cssnext": "3.0.2",
     "postcss-import": "11.0.0",
     "replace": "0.3.0",
-    "stylelint": "8.4.0"
+    "stylelint": "8.4.0",
+    "svg-sprite": "1.3.7"
   },
   "dependencies": {}
 }

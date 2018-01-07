@@ -14,6 +14,6 @@ let throttle = (func, wait) => {
 	return newFunc;
 };
 
-export default {
+export {
 	throttle
 };

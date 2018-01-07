@@ -17,9 +17,7 @@ export default class {
 	}
 	
 	render() {
-		this.view.style.cssText = `
-			transform: translate3d(${this.x}px, ${this.y}px, 0);
-		`;
+		this.view.style.cssText = `transform: translate3d(${this.x}px, ${this.y}px, 0);`;
 		this.viewLines.style.cssText = `transform: rotate(${this.rotation}deg);`;
 	}
 };

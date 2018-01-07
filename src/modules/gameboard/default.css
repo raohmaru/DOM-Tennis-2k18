@@ -1,7 +1,10 @@
 .gameboard {
 	position: relative;
-	height: 400px;
+	height: 100%;
 	overflow: hidden;
-	/* Eliminate 300 ms click delay */
-	touch-action: manipulation;
+	touch-action: manipulation;  /* Eliminate 300 ms click delay */
+	
+	@media (--small-viewport) {
+		height: 400px;
+	}
 }

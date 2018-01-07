@@ -1,5 +1,13 @@
 .page-title {
+	position: absolute;
+	top: 0;
+	margin: 0.4em 0;
+	padding-left: 10px;
 	font-size: 1em;
 	letter-spacing: -0.05em;
-	color: #576f56;
+	
+	@media (--small-viewport) {
+		position: relative;
+		padding-left: 0;
+	}
 }

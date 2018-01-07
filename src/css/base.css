@@ -15,7 +15,6 @@ main {  /* IE11 */
 
 a {
 	position: relative;
-	color: #000;
 	text-decoration: none;
 	
 	&::after {

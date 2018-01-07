@@ -1,3 +1,6 @@
 :root {
 	--fzSmall: 0.8em;
+	--wpSmall: 768px;
 }
+
+@custom-media --small-viewport (min-width: 768px);

@@ -5,6 +5,6 @@
 	touch-action: manipulation;  /* Eliminate 300 ms click delay */
 	
 	@media (--small-viewport) {
-		height: 400px;
+		height: 600px;
 	}
 }

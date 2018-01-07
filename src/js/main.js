@@ -1,6 +1,7 @@
 import * as cfg  from './config.js';
 import * as env  from './env.js';
-import _         from './util.js';
+import _         from './lib/util.js';
+import Beat      from './lib/beat.js';
 import Ball      from '../modules/ball/entity.js';
 import Gameboard from '../modules/gameboard/entity.js';
 import Score     from '../modules/score/entity.js';
@@ -19,7 +20,7 @@ let kickCount = 0,
 	score,
 	ranking,
 	options,  // eslint-disable-line no-unused-vars
-	startTime;
+	beat;
 	
 function init() {
 	let inputEvent = env.isTouch ? 'touchstart' : 'mouseover';
@@ -37,8 +38,8 @@ function init() {
 	
 	doc.getElementById('clearRanking').addEventListener('click', ranking.clear.bind(ranking));
 	
-	startTime = window.performance.now();
-	frame();
+	beat = new Beat(cfg.fps, frame);
+	beat.start();
 }
 
 function ballHit(e) {
@@ -57,29 +58,19 @@ function ballHit(e) {
 }
 
 function frame(currentTime) {
-	window.requestAnimationFrame(frame);
-	// calc elapsed time since last loop
-	let elapsed = currentTime - startTime;
-	// if enough time has elapsed, draw the next frame
-	if (elapsed > cfg.fpsInterval) {
-		// Get ready for next frame by setting startTime=currentTime, but...
-		// Also, adjust for cfg.fpsInterval not being multiple of 16.67
-		startTime = currentTime - (elapsed % cfg.fpsInterval);
-	
-		if (ball.momentum) {
-			ballPhysics();
-			ball.render();
-		}
-		score.render();
+	if (ball.momentum) {
+		ballPhysics();
+		ball.render();
 	}
+	score.render();
 }
 
 function ballPhysics() {
 	ball.y += ball.yvel;
-	if (ball.y + ball.height <= gameboard.bottom) {
+	if (ball.bottom <= gameboard.bottom) {
 		ball.yvel += cfg.gravity;
 	} else {
-		ball.y -= ball.y + ball.height - gameboard.bottom;
+		ball.y -= ball.bottom - gameboard.bottom;
 		ball.yvel *= -cfg.groundFriction;
 		if (ball.yvel > -cfg.vSpeedThreshold) {
 			ball.y = gameboard.bottom - ball.height;
@@ -95,8 +86,8 @@ function ballPhysics() {
 	if (ball.x < gameboard.left) {
 		ball.x += gameboard.left - ball.x;
 		ball.xvel *= -cfg.wallFriction;
-	} else if (ball.x + ball.width > gameboard.right) {
-		ball.x -= ball.x + ball.width - gameboard.right;
+	} else if (ball.right > gameboard.right) {
+		ball.x -= ball.right - gameboard.right;
 		ball.xvel *= -cfg.wallFriction;
 	}
 	if (abs(ball.xvel) < cfg.hSpeedThreshold) {

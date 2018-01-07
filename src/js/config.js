@@ -5,6 +5,6 @@ export const
 	wallFriction    = 1,
 	hitPower        = 10,
 	hitHorizMult    = 1,
-	fpsInterval     = 1000 / 60,
+	fps             = 60,
 	vSpeedThreshold = 1,
 	hSpeedThreshold = 0.2;

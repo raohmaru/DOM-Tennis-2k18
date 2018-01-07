@@ -16,6 +16,15 @@ export default class {
 		this.freeFall = false;
 	}
 	
+	get right() {
+		return this.x + this.width;
+	}
+	
+	get bottom() {
+		return this.y + this.height;
+	}
+	
+	
 	render() {
 		this.view.style.cssText = `transform: translate3d(${this.x}px, ${this.y}px, 0);`;
 		this.viewLines.style.cssText = `transform: rotate(${this.rotation}deg);`;

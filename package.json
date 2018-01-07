@@ -24,7 +24,7 @@
     "replace": "cross-var replace \"\\.(css|js)\" \".min.$1?v=$npm_package_version\" dist/index.html -q",
     "watch": "run-p watch:*",
     "watch:html": "onchange \"src/index.html\" -- npm run html",
-    "watch:css": "onchange \"src/css/*.css\" \"src/modules/**/*.css\" -- npm run css",
+    "watch:css": "onchange \"src/css/**\" \"src/modules/**/*.css\" -- npm run css",
     "watch:js": "onchange \"src/js/*.js\" \"src/modules/**/*.js\" -- npm run js",
     "start": "http-server dist/ -o --silent",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -60,6 +60,7 @@
     "copy": "0.3.1",
     "cross-env": "5.1.3",
     "cross-var": "1.1.0",
+    "css-mqpacker": "6.0.1",
     "cssnano": "3.10.0",
     "cssnano-cli": "1.0.5",
     "del": "3.0.0",

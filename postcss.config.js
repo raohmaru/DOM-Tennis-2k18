@@ -4,7 +4,8 @@ module.exports = (ctx) => {
 		map: !isProd,
 		plugins: [
 			require('postcss-import')(),
-			require('postcss-cssnext')()
+			require('postcss-cssnext')(),
+			require('css-mqpacker')()
 		]
 	});
 }

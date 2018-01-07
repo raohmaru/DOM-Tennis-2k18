@@ -2,11 +2,11 @@ import * as cfg  from './config.js';
 import * as env  from './env.js';
 import _         from './lib/util.js';
 import Beat      from './lib/beat.js';
-import Ball      from '../modules/ball/entity.js';
-import Gameboard from '../modules/gameboard/entity.js';
-import Score     from '../modules/score/entity.js';
-import Ranking   from '../modules/ranking/entity.js';
-import Options   from '../modules/options/entity.js';
+import Ball      from '../modules/ball/ball.entity.js';
+import Gameboard from '../modules/gameboard/gameboard.entity.js';
+import Score     from '../modules/score/score.entity.js';
+import Ranking   from '../modules/ranking/ranking.entity.js';
+import Options   from '../modules/options/options.entity.js';
 
 const
 	// quick refs
@@ -94,8 +94,8 @@ function ballPhysics() {
 		ball.xvel = 0;
 	}
 	
-	if(ball.xvel !== 0) {
-		ball.rotation += ball.xvel * 2;		
+	if (ball.xvel !== 0) {
+		ball.rotation += ball.xvel * 2;
 	}
 	
 	if (ball.yvel === 0 && ball.xvel === 0 && !ball.freeFall) {

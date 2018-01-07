@@ -3,14 +3,14 @@
 @import 'layout.css';
 
 /* Components */
-@import '../modules/ball/default.css';
-@import '../modules/gameboard/default.css';
-@import '../modules/score/default.css';
-@import '../modules/ranking/default.css';
-@import '../modules/buttons/default.css';
-@import '../modules/footer/default.css';
-@import '../modules/options/default.css';
-@import '../modules/title/default.css';
+@import '../modules/ball/ball.default.css';
+@import '../modules/gameboard/gameboard.default.css';
+@import '../modules/score/score.default.css';
+@import '../modules/ranking/ranking.default.css';
+@import '../modules/buttons/buttons.default.css';
+@import '../modules/footer/footer.default.css';
+@import '../modules/options/options.default.css';
+@import '../modules/title/title.default.css';
 
 /* Themes */
 @import 'themes/theme.default.css';

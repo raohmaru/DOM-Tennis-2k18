@@ -7,7 +7,6 @@ export default class {
 		this._frameCount = 0;
 		this._currentTime = 0;
 		this._prevTime = 0;
-		this._timerID;
 	}
 	
 	get currentFps() {
@@ -20,7 +19,7 @@ export default class {
 		this._startTime = window.performance.now();
 		this._then = this._startTime;
 		this._onFrame = (currentTime) => me.frame(currentTime);
-		this.frame();		
+		this.frame();
 	}
 
 	stop() {

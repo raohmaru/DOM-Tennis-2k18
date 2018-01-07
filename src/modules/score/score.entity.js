@@ -32,7 +32,7 @@ export default class {
 				}
 				cssStr += `transform: perspective(500px) translateZ(${this._scale * SCALE_MULT}px);`;
 				
-				if(!env.isTouch) {					
+				if (!env.isTouch) {
 					if (this._opacity < 1) {
 						this._opacity += OPACITY_INCR;
 					}

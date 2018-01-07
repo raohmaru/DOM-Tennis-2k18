@@ -36,6 +36,7 @@ function init() {
 	ball.view.addEventListener(inputEvent, _.throttle(ballHit, 100));
 	
 	doc.getElementById('clearRanking').addEventListener('click', ranking.clear.bind(ranking));
+	window.addEventListener('resize', winResizeHandler);
 	
 	beat = new Beat(cfg.fps, frame);
 	beat.start();
@@ -105,6 +106,10 @@ function ballPhysics() {
 function addKickCount() {
 	score.add(1).update();
 	score.render();
+}
+
+function winResizeHandler(e) {
+	ball.momentum = true;
 }
 
 init();

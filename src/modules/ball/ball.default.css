@@ -1,5 +1,5 @@
 :root {
-	--ballSize: 34px;
+	--ballSize: 42px;
 	--ballBigSize: 64px;
 	--ballColorLight: #f3d959;
 	--ballColorDark: #846307;
@@ -53,8 +53,8 @@
 			left: -33px;
 	
 			@media (--small-viewport) {
-				top: -20px;
-				left: -20px;
+				top: -25px;
+				left: -25px;
 			}
 		}
 		
@@ -63,8 +63,8 @@
 			left: 23px;
 	
 			@media (--small-viewport) {
-				top: 14px;
-				left: 14px;
+				top: 19px;
+				left: 19px;
 			}
 		}
 	}

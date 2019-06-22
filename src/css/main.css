@@ -15,3 +15,28 @@
 
 /* Themes */
 @import 'themes/theme.default.css';
+
+:root {
+	--svgSprite: ../img/sprite.svg;
+}
+
+.align-right {
+	text-align: right;
+}
+
+[class*=icon-]::after {
+	content: '';
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.icon-cogwheel::after {
+	background-image: url(var(--svgSprite)#cogwheel);  /* stylelint-disable-line function-whitespace-after */
+}
+
+.icon-close::after {
+	background-image: url(var(--svgSprite)#close);  /* stylelint-disable-line function-whitespace-after */
+}

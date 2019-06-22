@@ -1,7 +1,7 @@
 {
   "name": "domtennis2k18",
   "title": "DOM Tennis 2k18",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "HTML + CSS + JavaScript tennis game",
   "main": "index.html",
   "scripts": {
@@ -69,7 +69,7 @@
     "cssnano-cli": "1.0.5",
     "del": "3.0.0",
     "del-cli": "1.1.0",
-    "eslint": "4.14.0",
+    "eslint": "4.18.2",
     "eslint-config-standard": "11.0.0-beta.0",
     "eslint-plugin-import": "2.8.0",
     "eslint-plugin-node": "5.2.1",

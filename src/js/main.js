@@ -12,7 +12,7 @@ import Options   from '../modules/options/options.entity.js';
 const
 	// quick refs
 	abs = Math.abs;
-	
+
 // variables
 let ball,
 	gameboard,
@@ -20,24 +20,24 @@ let ball,
 	ranking,
 	options,  // eslint-disable-line no-unused-vars
 	beat;
-	
+
 function init() {
 	let inputEvent = env.isTouch ? 'touchstart' : 'mouseover';
-	
+
 	gameboard = new Gameboard($('.gameboard')[0]);
 	score     = new Score($('#score'));
 	ranking   = new Ranking($('.ranking')[0]);
 	options   = new Options($('.options')[0]);
-	
+
 	ball = new Ball($('#ball'));
 	ball.x = gameboard.left + (gameboard.width >> 1) - ball.width;
 	ball.y = gameboard.bottom - ball.height;
 	ball.render();
 	ball.view.addEventListener(inputEvent, _.throttle(ballHit, 100));
-	
+
 	$('#clearRanking').addEventListener('click', ranking.clear.bind(ranking));
 	window.addEventListener('resize', winResizeHandler);
-	
+
 	beat = new Beat(cfg.fps, frame);
 	beat.start();
 }
@@ -49,7 +49,7 @@ function ballHit(e) {
 	} else {
 		clientX = e.clientX;
 	}
-	
+
 	ball.yvel = -cfg.hitPower;
 	ball.xvel = (ball.x + (ball.width >> 1) - (clientX - gameboard.offsetLeft)) * cfg.hitHorizMult;
 	ball.momentum = true;
@@ -93,11 +93,11 @@ function ballPhysics() {
 	if (abs(ball.xvel) < cfg.hSpeedThreshold) {
 		ball.xvel = 0;
 	}
-	
+
 	if (ball.xvel !== 0) {
 		ball.rotation += ball.xvel * 2;
 	}
-	
+
 	if (ball.yvel === 0 && ball.xvel === 0 && !ball.freeFall) {
 		ball.momentum = false;
 	}

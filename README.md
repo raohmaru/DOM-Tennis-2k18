@@ -32,7 +32,7 @@ elements are animated using CSS.
 Generate CSS files and copies HTML and JS files to dist/ folder.
 
 `npm run build:prod`  
-Cleans dist/ folder, lints HTML, CSS and JS files, generate sCSS files and minifies all files into
+Cleans dist/ folder, lints HTML, CSS and JS files, generate CSS files and minifies all files into
 dist/ folder.
 
 `npm run lint`  
@@ -54,5 +54,5 @@ In order to support older browsers, you need polyfills for the following JavaScr
 - [Performance.now()](https://developer.mozilla.org/en-US/docs/Web/API/Performance/now)
 - [window.requestAnimationFrame()](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)
 
-### License
+## License
 Released under the MIT license.

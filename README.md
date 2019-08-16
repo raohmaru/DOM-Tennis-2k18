@@ -1,4 +1,4 @@
-# DOM Tennis 2k18
+# DOM Tennis 2k19
 A browser game using HTML, CSS and [vanilla JavaScript](http://vanilla-js.com/).  
 The goal of the game is to kick the ball with the cursor over and over without touching the floor.
 

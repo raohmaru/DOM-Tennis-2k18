@@ -7,31 +7,32 @@ export default class {
 		this.y        = 0;
 		this.x        = 0;
 		this.rotation = 0;
-		// physics
-		this.yvel     = 0;
-		this.xvel     = 0;
-		this.momentum = false;
-		this.freeFall = false;
+		this.update();
 	}
-	
+
 	get width() {
-		return this.view.clientWidth;
+		return this._width;
 	}
-	
+
 	get height() {
-		return this.view.clientHeight;
+		return this._height;
 	}
-	
+
 	get right() {
-		return this.x + this.width;
+		return this.x + this._width;
 	}
-	
+
 	get bottom() {
-		return this.y + this.height;
+		return this.y + this._height;
 	}
-	
+
 	render() {
 		this.view.style.cssText = `transform: translate3d(${this.x}px, ${this.y}px, 0);`;
 		this.viewLines.style.cssText = `transform: rotateZ(${this.rotation}deg);`;
+	}
+
+	update() {
+		this._width = this.view.clientWidth;
+		this._height = this.view.clientHeight;
 	}
 };

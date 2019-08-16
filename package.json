@@ -1,7 +1,7 @@
 {
   "name": "domtennis2k18",
-  "title": "DOM Tennis 2k18",
-  "version": "0.2.0",
+  "title": "DOM Tennis 2k19",
+  "version": "0.3.0",
   "description": "HTML + CSS + JavaScript tennis game",
   "main": "index.html",
   "scripts": {

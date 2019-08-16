@@ -4,6 +4,8 @@ import * as _    from './lib/util.js';
 import $         from './lib/dom.js';
 import Beat      from './lib/beat.js';
 import Physics   from './lib/physics.js';
+import SAS       from './lib/sas/sasynth.js';
+import Note      from './lib/sas/note.js';
 import Ball      from '../modules/ball/ball.entity.js';
 import Gameboard from '../modules/gameboard/gameboard.entity.js';
 import Score     from '../modules/score/score.entity.js';
@@ -17,7 +19,10 @@ let ball,
 	ranking,
 	options,  // eslint-disable-line no-unused-vars
 	beat,
-	physics;
+	physics,
+	sas,
+	ballSnd,
+	wallHitSnd;
 
 function init() {
 	let inputEvent = env.isTouch ? 'touchstart' : 'mouseover';
@@ -39,9 +44,58 @@ function init() {
 	physics = new Physics(cfg);
 	physics.addBoundingBox(gameboard.box);
 	physics.addObject(ball);
+	physics.onCollision.then((obj) => {
+		const v = (Math.abs(obj.yvel) + Math.abs(obj.xvel)) * .05;
+		if (v >= 0.01) {
+			wallHitSnd.volume = v;
+			wallHitSnd.play();
+		}
+	});
 
 	beat = new Beat(cfg.fps, frame);
 	beat.start();
+
+	sas = new SAS();
+	ballSnd = new Note(sas, {
+		"type": "sine",
+		"freq": 70,
+		"envelope": [
+			0.02,
+			0.01,
+			0.1,
+			0.07
+		],
+		"envelopeSustainLevel": 0.8,
+		// "volume": 0.5,
+		"biquadFilter": {
+			"type": "lowpass",
+			"detune": 0,
+			"frequency": 670,
+			"gain": 0,
+			"Q": 1
+		}
+	});
+	wallHitSnd = new Note(sas, {
+		"type": "sine",
+		"freq": 40,
+		"freqDetune": 100,
+		"envelope": [
+			0.02,
+			0.02,
+			0.1,
+			0.02
+		],
+		"envelopeSustainLevel": 0.8,
+		// "volume": 0.25,
+		"biquadFilter": {
+			"type": "lowpass",
+			"detune": 0,
+			"frequency": 530,
+			"gain": 0,
+			"Q": 1
+		}
+	});
+	sas.start();
 }
 
 function ballHit(e) {
@@ -57,6 +111,7 @@ function ballHit(e) {
 	ball.momentum = true;
 	ball.freeFall = true;
 	addKickCount();
+	ballSnd.play();
 }
 
 function frame(currentTime) {

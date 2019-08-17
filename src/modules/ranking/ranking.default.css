@@ -1,7 +1,7 @@
 .ranking {
-    width: 120px;
+    width: 160px;
     margin: 0 auto;
-	padding: 0.3em;
+	padding: 0.3em 0 0.5em;
 	font-size: var(--fzSmall);
 	text-align: center;
     background-color: rgba(0, 0, 0, 0.5);

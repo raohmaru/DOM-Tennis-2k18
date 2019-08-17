@@ -39,7 +39,6 @@
 		&:focus {
 			opacity: 1;
 		}
-		
 
 		& .options__action::after {
 			width: 34px;
@@ -76,7 +75,8 @@
 			margin: 0;
 			padding: var(--optionsSecPadd);
 			font-size: 1em;
-			border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+			text-transform: uppercase;
+			border-bottom: 1px solid rgba(0, 0, 0, 0.4);
 		}
 
 		.options__sectionContent {

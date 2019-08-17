@@ -1,19 +1,10 @@
 .theme-default {
 	background-color: #3c2410;
-	
-	@media (--small-viewport) {
-		background-color: #fff;
-	}
-	
+
 	& .page-title {
 		color: #fff;
-		
-		@media (--small-viewport) {
-			color: #576f56;
-		}
 	}
 
-	
 	& .gameboard {
 		background-color: #b0dfae;
 	}
@@ -21,40 +12,28 @@
 	& .ranking {
 		color: #fff;
 	}
-	
+
 	& .options {
-		background-color: #9ec89c;
+		background-color: #eee;
 	}
-	
+
+	& .options__block {
+		background-color: #00000042;
+	}
+
 	& .pageinfo {
 		color: #fff;
-		
-		@media (--small-viewport) {
-			color: initial;
-		}
-		
+
 		& a {
 			color: #fff;
-		
-			@media (--small-viewport) {
-				color: #000;
-			}
-			
+
 			&::after {
 				border-bottom-color: #fff;
-		
-				@media (--small-viewport) {
-					border-bottom-color: #000;
-				}
 			}
 		}
 	}
-	
+
 	& .score__value {
 		color: #e5f1e4;
-		
-		@media (--small-viewport) {
-			color: #fff;
-		}
 	}
 }

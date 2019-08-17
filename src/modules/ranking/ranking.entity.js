@@ -1,31 +1,49 @@
-const
-	LS_TOP_SCORE = 'topScore';
+import * as CNT from '../../js/const.js';
 
 export default class {
-	constructor(view) {
+	constructor(view, core) {
 		// view
 		this.view         = view;
-		this.viewTopScore = view.querySelector('.ranking__top');
+		this.viewTopScore = view.querySelector('.ranking__topScore');
+		this.viewTopHeight = view.querySelector('.ranking__topHeight');
 		// props
 		this._scores = [];
-		
-		let savedScore = localStorage.getItem(LS_TOP_SCORE);
+		this._heights = [];
+
+		let savedScore = localStorage.getItem(CNT.LS_TOP_SCORE),
+			savedHeight = localStorage.getItem(CNT.LS_TOP_HEIGHT);
 		if (savedScore) {
-			this.update(parseInt(savedScore, 10));
+			this.updateScore(parseInt(savedScore, 10));
+		}
+		if (savedHeight) {
+			this.updateHeight(parseInt(savedHeight, 10));
+		}
+
+		core.v.then(this.clear.bind(this), 'clearRanking');
+	}
+
+	updateScore(value) {
+		if ((value && !this._scores[0]) || value > this._scores[0]) {
+			this._scores.unshift(value);
+			this.viewTopScore.innerHTML = value;
+			localStorage.setItem(CNT.LS_TOP_SCORE, value);
 		}
 	}
 
-	update(newScore) {
-		if ((newScore && !this._scores[0]) || newScore > this._scores[0]) {
-			this._scores.unshift(newScore);
-			this.viewTopScore.innerHTML = newScore;
-			localStorage.setItem(LS_TOP_SCORE, newScore);
+	updateHeight(value) {
+		if ((value && !this._heights[0]) || value > this._heights[0]) {
+			this._heights.unshift(value);
+			this.viewTopHeight.innerHTML = value;
+			localStorage.setItem(CNT.LS_TOP_HEIGHT, value);
 		}
 	}
 
 	clear() {
 		this._scores.length = 0;
+		this._heights.length = 0;
 		this.viewTopScore.innerHTML = 0;
-		localStorage.setItem(LS_TOP_SCORE, 0);
+		this.viewTopHeight.innerHTML = 0;
+		localStorage.setItem(CNT.LS_TOP_SCORE, 0);
+		localStorage.setItem(CNT.LS_TOP_HEIGHT, 0);
 	}
 };

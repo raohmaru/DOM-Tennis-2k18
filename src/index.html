@@ -12,11 +12,12 @@
 <body class="theme-default">
 
 <div class="wrapper">
-	<h1 class="page-title">DOM Tennis 2k19</h1>
+	<h1 class="page-title">DOM Tennis 2k19 &#x1F3BE;</h1>
 
 	<main class="gameboard" role="main">
 		<header class="ranking">
-			Top Score: <span class="ranking__top">0</span>
+			Top score: <span class="ranking__topScore">0</span><br>
+			Top height: <span class="ranking__topHeight">0</span><br>
 		</header>
 
 		<div class="score">
@@ -26,21 +27,24 @@
 		</div>
 
 		<aside class="options" role="complementary">
-			<div class="options__block" data-opt-action="close"></div>
+			<div class="options__block" data-action="close"></div>
 			<div class="options__toolbar">
-				<span class="options__action icon-cogwheel" data-opt-action="toogleOpen"></span>
+				<span class="options__action icon-cogwheel" data-action="toogleOpen"></span>
 			</div>
-			<span class="options__close options__action icon-close" data-opt-action="close"></span>
+			<span class="options__close options__action icon-close" data-action="close"></span>
 
 			<section class="options__section">
 				<h2 class="options__sectionTitle">Options</h2>
+			</section>
+			<section class="options__section">
 				<div class="options__sectionContent">
-					Game speed: <span id="speedLabel">Normal</span>
+					<strong>Speed</strong>
+					<input type="range" name="speed" value="1" min="1" max="2" step="0.1" data-action="changeSpeed" />
 				</div>
 			</section>
 			<section class="options__section">
 				<div class="options__sectionContent">
-					<input type="button" class="button button-warning" id="clearRanking" value="Clear top score">
+					<input type="button" class="button button-warning" data-action="clearRanking" value="Clear ranking">
 				</div>
 			</section>
 		</aside>

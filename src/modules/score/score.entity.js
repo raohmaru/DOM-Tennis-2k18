@@ -1,21 +1,25 @@
 import * as env  from '../../js/env.js';
+import * as CNT from '../../js/const.js';
 
 const
-	DURATION     = 30,
+	DURATION     = 45,
 	OPACITY_INCR = 0.02,
 	SCALE_INCR   = 0.05,
 	SCALE_MULT   = 200;
 
 export default class {
-	constructor(view) {
+	constructor(view, core) {
 		// view
 		this.view    = view;
 		// props
 		this._current = 0;
+		this._last = localStorage.getItem(CNT.LS_TOP_SCORE) || 0;
 		this._visible = false;
 		this._timer   = 0;
 		this._opacity = 0;
 		this._scale   = 0;
+
+		core.v.then(this.clear.bind(this), 'clearRanking');
 	}
 
 	get current() {
@@ -48,8 +52,8 @@ export default class {
 		return this;
 	}
 
-	update() {
-		this.view.textContent = this._current;
+	update(txt) {
+		this.view.textContent = txt || this._current;
 		this._timer   = 0;
 		this._opacity = 0;
 		this._scale   = 0;
@@ -63,6 +67,16 @@ export default class {
 	}
 
 	reset() {
+		if (this._current > this._last) {
+			this.update('Top!');
+			this._last = this._current;
+		} else if (this._current) {
+			this.update('ohh');
+		}
 		this._current = 0;
+	}
+
+	clear() {
+		this._last = 0;
 	}
 };

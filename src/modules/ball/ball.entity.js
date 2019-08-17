@@ -7,6 +7,11 @@ export default class {
 		this.y        = 0;
 		this.x        = 0;
 		this.rotation = 0;
+		// cached props
+		this._y        = 0;
+		this._x        = 0;
+		this._rotation = 0;
+
 		this.update();
 	}
 
@@ -27,8 +32,15 @@ export default class {
 	}
 
 	render() {
-		this.view.style.cssText = `transform: translate3d(${this.x}px, ${this.y}px, 0);`;
-		this.viewLines.style.cssText = `transform: rotateZ(${this.rotation}deg);`;
+		if (this.x !== this._x || this.y !== this._y) {
+			this._y = this.y;
+			this._x = this.x;
+			this.view.style.cssText = `transform: translate3d(${this.x}px, ${this.y}px, 0);`;
+		}
+		if (this.rotation !== this._rotation) {
+			this._rotation = this.rotation;
+			this.viewLines.style.cssText = `transform: rotateZ(${this.rotation}deg);`;
+		}
 	}
 
 	update() {

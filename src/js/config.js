@@ -3,7 +3,7 @@ export const
 	drag            = 0.98,
 	groundFriction  = 0.7,
 	wallFriction    = 1,
-	hitPower        = 10,
+	hitPower        = 12,
 	hitHorizMult    = 1,
 	fps             = 60,
 	vSpeedThreshold = 1,

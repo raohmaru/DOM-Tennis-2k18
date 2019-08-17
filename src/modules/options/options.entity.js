@@ -1,39 +1,46 @@
-import $ from '../../js/lib/dom.js';
+export default function(view, core) {
+	const _cfg = Object.assign({}, core.cfg);
+	core.v.then(execAction);
 
-const
-	AC_TOGGLE_OPEN = 'toogleOpen',
-	AC_CLOSE       = 'close';
-
-export default class {
-	constructor(view) {
-		this.view = view;
-		
-		$('[data-opt-action]').forEach(el => el.addEventListener('click', this.execAction.bind(this)));
-	}
-	
-	execAction(e) {
-		let action = e.currentTarget.dataset.optAction;
-		
+	function execAction(action, el) {
 		switch (action) {
-			case AC_TOGGLE_OPEN:
-				this.toggleOpen();
+			case 'toogleOpen':
+				toggleOpen();
 				break;
-				
-			case AC_CLOSE:
-				this.close();
+
+			case 'close':
+				close();
+				break;
+
+			case 'changeSpeed':
+				changeSpeed(parseFloat(el.value));
 				break;
 		}
 	}
-	
-	toggleOpen() {
-		this.view.classList.contains('options--open') ? this.close() : this.open();
+
+	function toggleOpen() {
+		view.classList.contains('options--open') ? close() : open();
 	}
-	
-	open() {
-		this.view.classList.add('options--open');
+
+	function open() {
+		view.classList.add('options--open');
+		window.addEventListener('keydown', onKeyPress);
 	}
-	
-	close() {
-		this.view.classList.remove('options--open');
+
+	function close() {
+		view.classList.remove('options--open');
+		window.removeEventListener('keydown', onKeyPress);
+	}
+
+	function changeSpeed(value) {
+		core.cfg.gravity = _cfg.gravity * value;
+		core.cfg.hitPower = Math.max(_cfg.hitPower * value * 0.8, _cfg.hitPower);
+		core.cfg.hitHorizMult = _cfg.hitHorizMult * value;
+	}
+
+	function onKeyPress(e) {
+		if (e.keyCode === 27) {  // Escape
+			close();
+		}
 	}
 };

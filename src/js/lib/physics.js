@@ -25,10 +25,12 @@ export default class Physics {
 		for (let i = 0; i < this._objects.length; i++) {
 			obj = this._objects[i];
 
+			obj.y += obj.yvel;
 			obj.yvel += cfg.gravity;
 			if (obj.bottom + obj.yvel > bbox.bottom) {
 				obj.yvel -= cfg.gravity;
 				obj.yvel *= -cfg.groundFriction;
+				obj.y = bbox.bottom - obj.height;
 				if (obj.yvel) {
 					obj.onCollision.emit(obj, 'bbox:bottom');
 				}
@@ -38,7 +40,6 @@ export default class Physics {
 					obj.yvel = 0;
 				}
 			}
-			obj.y += obj.yvel;
 
 			obj.xvel *= cfg.drag;
 			obj.x += obj.xvel;

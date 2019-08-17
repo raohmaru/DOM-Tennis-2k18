@@ -1,27 +1,21 @@
 import Rectangle from '../../js/lib/rectangle.js';
 
-export default class {
-	constructor(view) {
-		// view
-		this.view = view;
-		this.box = new Rectangle();
-		this.update();
-	}
+export default function(view) {
+	const box = new Rectangle();
+	update();
 
-	get offsetTop() {
-		return this.view.offsetTop;
-	}
-
-	get offsetLeft() {
-		return this.view.offsetLeft;
-	}
-
-	update() {
-		this.box.update(
-			this.view.clientWidth,
-			this.view.clientHeight,
-			this.view.clientLeft,
-			this.view.clientTop
+	function update() {
+		box.update(
+			view.clientWidth,
+			view.clientHeight,
+			view.clientLeft,
+			view.clientTop
 		);
 	}
+
+	return {
+		view,
+		box,
+		update
+	};
 };

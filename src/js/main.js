@@ -29,9 +29,9 @@ function init() {
 		cfg
 	};
 
-	gameboard = new Gameboard($('.gameboard')[0]);
-	score     = new Score($('#score'), core);
-	ranking   = new Ranking($('.ranking')[0], core);
+	gameboard = Gameboard($('.gameboard')[0]);
+	score     = Score($('#score'), core);
+	ranking   = Ranking($('.ranking')[0], core);
 	Options($('.options')[0], core);
 
 	ball = new Ball($('#ball'));
@@ -105,7 +105,7 @@ function initPhysics() {
 			wallHitSnd.play();
 		}
 		if (where === 'bbox:bottom') {
-			ranking.updateScore(score.current);
+			ranking.updateScore(score.getCurrent());
 			score.reset();
 		}
 	});
@@ -132,7 +132,7 @@ function ballHit(e) {
 	}
 
 	ball.yvel = -cfg.hitPower;
-	ball.xvel = (ball.x + (ball.width >> 1) - (clientX - gameboard.offsetLeft)) * cfg.hitHorizMult;
+	ball.xvel = (ball.x + (ball.width >> 1) - (clientX - gameboard.view.offsetLeft)) * cfg.hitHorizMult;
 	addKickCount();
 	ballSnd.play();
 }

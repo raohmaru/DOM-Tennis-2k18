@@ -7,76 +7,78 @@ const
 	SCALE_INCR   = 0.05,
 	SCALE_MULT   = 200;
 
-export default class {
-	constructor(view, core) {
-		// view
-		this.view    = view;
-		// props
-		this._current = 0;
-		this._last = localStorage.getItem(CNT.LS_TOP_SCORE) || 0;
-		this._visible = false;
-		this._timer   = 0;
-		this._opacity = 0;
-		this._scale   = 0;
+export default function(view, core) {
+	// props
+	let _current = 0,
+		_last = localStorage.getItem(CNT.LS_TOP_SCORE) || 0,
+		_visible = false,
+		_timer   = 0,
+		_opacity = 0,
+		_scale   = 0;
 
-		core.v.then(this.clear.bind(this), 'clearRanking');
-	}
+	core.v.then(clear, 'clearRanking');
 
-	get current() {
-		return this._current;
-	}
-
-	render() {
-		if (this._visible) {
-			if (this._timer++ < DURATION) {
+	function render() {
+		if (_visible) {
+			if (_timer++ < DURATION) {
 				let cssStr = 'display: block;';
 
-				if (this._scale < 1) {
-					this._scale += SCALE_INCR;
+				if (_scale < 1) {
+					_scale += SCALE_INCR;
 				}
-				cssStr += `transform: perspective(500px) translateZ(${this._scale * SCALE_MULT}px);`;
+				cssStr += `transform: perspective(500px) translateZ(${_scale * SCALE_MULT}px);`;
 
 				if (!env.isTouch) {
-					if (this._opacity < 1) {
-						this._opacity += OPACITY_INCR;
+					if (_opacity < 1) {
+						_opacity += OPACITY_INCR;
 					}
-					cssStr += `opacity: ${this._opacity};`;
+					cssStr += `opacity: ${_opacity};`;
 				}
 
-				this.view.style.cssText = cssStr;
+				view.style.cssText = cssStr;
 			} else {
-				this.view.style.display = 'none';
-				this._visible = false;
+				view.style.display = 'none';
+				_visible = false;
 			}
 		}
 		return this;
 	}
 
-	update(txt) {
-		this.view.textContent = txt || this._current;
-		this._timer   = 0;
-		this._opacity = 0;
-		this._scale   = 0;
-		this._visible = true;
+	function update(txt) {
+		view.textContent = txt || _current;
+		_timer   = 0;
+		_opacity = 0;
+		_scale   = 0;
+		_visible = true;
 		return this;
 	}
 
-	add(num) {
-		this._current += num;
+	function add(num) {
+		_current += num;
 		return this;
 	}
 
-	reset() {
-		if (this._current > this._last) {
-			this.update('Top!');
-			this._last = this._current;
-		} else if (this._current) {
-			this.update('ohh');
+	function reset() {
+		if (_current > _last) {
+			update('Top!');
+			_last = _current;
+		} else if (_current) {
+			update('ohh');
 		}
-		this._current = 0;
+		_current = 0;
 	}
 
-	clear() {
-		this._last = 0;
+	function clear() {
+		_last = 0;
 	}
+
+	return {
+		reset,
+		add,
+		update,
+		render,
+		getCurrent() {
+			return _current;
+		}
+	};
 };

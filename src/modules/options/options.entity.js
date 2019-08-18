@@ -1,6 +1,6 @@
 import * as CNT from '../../js/const.js';
 
-export default function(view, core) {
+export function Options(view, core) {
 	const _cfg = Object.assign({}, core.cfg);
 	core.v.then(execAction);
 

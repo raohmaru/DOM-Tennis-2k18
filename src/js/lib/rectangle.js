@@ -38,8 +38,4 @@ export default class Rectangle {
 		this._x      = x;
 		this._y      = y;
 	}
-
-	clone() {
-		return new Rectangle(this._width, this._height, this._x, this._y);
-	}
 }

@@ -1,6 +1,6 @@
 import * as CNT from '../../js/const.js';
 
-export default function(view, core) {
+export function Ranking(view, core) {
 	const
 		viewTopScore = view.querySelector('.ranking__topScore'),
 		viewTopHeight = view.querySelector('.ranking__topHeight'),

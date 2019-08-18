@@ -1,10 +1,14 @@
 import Rectangle from '../../js/lib/rectangle.js';
 
-export default function(view) {
-	const box = new Rectangle();
+export function Gameboard(view) {
+	const box = new Rectangle(),
+		offset = {};
 	update();
 
 	function update() {
+		const bcr = view.getBoundingClientRect();
+		offset.left = bcr.x;
+
 		box.update(
 			view.clientWidth,
 			view.clientHeight,
@@ -16,6 +20,7 @@ export default function(view) {
 	return {
 		view,
 		box,
+		offset,
 		update
 	};
 };

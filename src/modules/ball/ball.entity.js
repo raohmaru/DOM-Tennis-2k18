@@ -6,7 +6,7 @@ const BALLS = [
 	'football'
 ];
 
-export default class {
+export class Ball {
 	constructor(view, core) {
 		// view
 		this.view      = view;

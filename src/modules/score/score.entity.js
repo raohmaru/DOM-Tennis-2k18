@@ -7,7 +7,7 @@ const
 	SCALE_INCR   = 0.05,
 	SCALE_MULT   = 200;
 
-export default function(view, core) {
+export function Score(view, core) {
 	// props
 	let _current = 0,
 		_last = core.st.getItem(CNT.LS_TOP_SCORE) || 0,

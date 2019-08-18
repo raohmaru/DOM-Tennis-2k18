@@ -1,5 +1,7 @@
 .theme-default {
 	background-color: #3c2410;
+	font-family: Gill Sans, Gill Sans MT, Calibri, sans-serif;
+	font-size: 120%;
 
 	& .page-title {
 		color: #fff;

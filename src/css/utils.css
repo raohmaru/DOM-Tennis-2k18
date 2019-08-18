@@ -22,3 +22,11 @@
 .icon-close::after {
 	background-image: url(var(--svgSprite)#close);  /* stylelint-disable-line function-whitespace-after */
 }
+
+.hide {
+	display: none !important;
+}
+
+.blur {
+	filter: blur(2px);
+}

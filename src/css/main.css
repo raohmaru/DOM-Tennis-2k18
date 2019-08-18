@@ -4,6 +4,7 @@
 @import 'utils.css';
 
 /* Components */
+@import '../modules/screens/screen.start.css';
 @import '../modules/ball/ball.default.css';
 @import '../modules/ball/ball.tennis.css';
 @import '../modules/ball/ball.golf.css';

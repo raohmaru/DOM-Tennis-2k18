@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DOM Tennis 2k19</title>
+	<title>DOM Tennis</title>
 	<meta name="description" content="Tennis game made with JavaScript and using the DOM">
 	<meta name="viewport" content="width=device-width, user-scalable=no">
 	<link rel="stylesheet" href="css/main.css">
@@ -11,10 +11,10 @@
 
 <body class="theme-default">
 
-<div class="wrapper">
-	<h1 class="page-title">DOM Tennis 2k19 &#x1F3BE;</h1>
+<div class="stage">
+	<h1 class="page-title">DOM Tennis &#x1F3BE;</h1>
 
-	<main class="gameboard" role="main">
+	<main class="gameboard blur" role="main">
 		<header class="ranking">
 			Top score: <span class="ranking__topScore">0</span><br>
 			Top height: <span class="ranking__topHeight">0</span><br>
@@ -66,8 +66,15 @@
 			</section>
 		</aside>
 
-		<div id="ball" class="ball ball--tennis"><div class="ball__lines"></div></div>
+		<div id="ball" class="ball ball--tennis" style="transform: translate3d(-100px, -100px, 0px);"><div class="ball__lines"></div></div>
 	</main>
+
+	<div class="screen" id="start-screen">
+		<div class="start">
+			<img src="img/logo.png" alt="DOM Tennis" />
+			<p class="start__title">Click here to start</p>
+		</div>
+	</div>
 
 	<footer class="page-footer" role="contentinfo">
 		<ul class="pageinfo">

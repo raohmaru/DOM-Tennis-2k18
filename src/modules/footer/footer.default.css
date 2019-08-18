@@ -1,7 +1,7 @@
 .page-footer {
 	position: absolute;
 	width: 100%;
-	margin-top: 1em;
+	margin-top: 0.7em;
 	color: #fff;
 	
 	@media (--small-viewport) {

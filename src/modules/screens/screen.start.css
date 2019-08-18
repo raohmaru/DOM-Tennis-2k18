@@ -1,0 +1,27 @@
+.screen {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 10;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	& .start {
+		margin: 16px;
+	}
+
+	&.fade-out {
+		opacity: 0;
+		transition: opacity 0.3s linear;
+	}
+}
+
+.start__title {
+	margin-top: -50px;
+	font-weight: bold;
+	text-align: center;
+	color: #2f682c;
+}

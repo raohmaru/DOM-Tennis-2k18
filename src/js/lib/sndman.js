@@ -1,19 +1,28 @@
 import SAS       from './sas/sasynth.js';
 import Note      from './sas/note.js';
+import * as _    from './util.js';
 
 // 'si,70,0,1:.02,.01,.1,.07,.8:lo,0,670,0,1'
 const notesParams = [
 		{
 			'name': 'ballHit',
 			'type': 'sine',
-			'freq': 50,
+			'freq': 45,
 			'envelope': [
 				0.02,
 				0.01,
 				0.1,
 				0.07
 			],
-			'envelopeSustainLevel': 1
+			'volume': 1.3,
+			'envelopeSustainLevel': 1,
+			'biquadFilter': {
+				'type': 'lowpass',
+				'detune': 0,
+				'frequency': 430,
+				'gain': 0,
+				'Q': 1
+			}
 		},
 		{
 			'name': 'wallHit',
@@ -73,7 +82,7 @@ function resume() {
 
 export default {
 	init,
-	play,
+	play: _.throttle(play, 20),
 	pause,
 	resume
 };

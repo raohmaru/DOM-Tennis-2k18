@@ -1,5 +1,5 @@
 {
-  "name": "domtennis2k18",
+  "name": "domtennis",
   "title": "DOM Tennis",
   "version": "0.5.1",
   "description": "HTML + CSS + JavaScript tennis game",
@@ -48,9 +48,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/raohmaru/DOM-Tennis-2k18/issues"
+    "url": "https://github.com/raohmaru/DOM-Tennis/issues"
   },
-  "homepage": "https://github.com/raohmaru/DOM-Tennis-2k18#readme",
+  "homepage": "https://github.com/raohmaru/DOM-Tennis#readme",
   "browserslist": [
     "> 1%",
     "last 2 versions",

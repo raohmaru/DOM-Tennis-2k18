@@ -7,8 +7,8 @@ export default function(view, core) {
 		_scores = [],
 		_heights = [];
 
-	let savedScore = localStorage.getItem(CNT.LS_TOP_SCORE),
-		savedHeight = localStorage.getItem(CNT.LS_TOP_HEIGHT);
+	let savedScore = core.st.getItem(CNT.LS_TOP_SCORE),
+		savedHeight = core.st.getItem(CNT.LS_TOP_HEIGHT);
 	if (savedScore) {
 		updateScore(parseInt(savedScore, 10));
 	}
@@ -16,13 +16,13 @@ export default function(view, core) {
 		updateHeight(parseInt(savedHeight, 10));
 	}
 
-	core.v.then(clear.bind(this), 'clearRanking');
+	core.v.then(clear, CNT.EV_CLEAR_RANKING);
 
 	function updateScore(value) {
 		if ((value && !_scores[0]) || value > _scores[0]) {
 			_scores.unshift(value);
 			viewTopScore.innerHTML = value;
-			localStorage.setItem(CNT.LS_TOP_SCORE, value);
+			core.st.setItem(CNT.LS_TOP_SCORE, value);
 		}
 	}
 
@@ -30,7 +30,7 @@ export default function(view, core) {
 		if ((value && !_heights[0]) || value > _heights[0]) {
 			_heights.unshift(value);
 			viewTopHeight.innerHTML = value;
-			localStorage.setItem(CNT.LS_TOP_HEIGHT, value);
+			core.st.setItem(CNT.LS_TOP_HEIGHT, value);
 		}
 	}
 
@@ -39,8 +39,8 @@ export default function(view, core) {
 		_heights.length = 0;
 		viewTopScore.innerHTML = 0;
 		viewTopHeight.innerHTML = 0;
-		localStorage.setItem(CNT.LS_TOP_SCORE, 0);
-		localStorage.setItem(CNT.LS_TOP_HEIGHT, 0);
+		core.st.setItem(CNT.LS_TOP_SCORE, 0);
+		core.st.setItem(CNT.LS_TOP_HEIGHT, 0);
 	}
 
 	return {

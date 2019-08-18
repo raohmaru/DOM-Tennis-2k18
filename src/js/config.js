@@ -6,5 +6,5 @@ export const
 	hitPower        = 12,
 	hitHorizMult    = 1,
 	fps             = 60,
-	vSpeedThreshold = 1,
+	vSpeedThreshold = 0.2,
 	hSpeedThreshold = 0.2;

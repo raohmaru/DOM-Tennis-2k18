@@ -1,0 +1,22 @@
+:root {
+	--golfBallSize: 24px;
+	--golfBallBigSize: 42px;
+	--golfBallColorLight: #fff;
+	--golfBallColorDark: #bbb;
+}
+
+.ball--golf {
+	width: var(--golfBallBigSize);
+	height: var(--golfBallBigSize);
+	background: var(--golfBallColorLight); /* Old browsers */
+	background: radial-gradient(ellipse at 35% 35%, var(--golfBallColorLight) 20%, var(--golfBallColorDark) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+	@media (--small-viewport) {
+		width: var(--golfBallSize);
+		height: var(--golfBallSize);
+	}
+
+	& .ball__lines {
+		display: none;
+	}
+}

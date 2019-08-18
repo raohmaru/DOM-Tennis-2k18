@@ -1,10 +1,11 @@
 .ranking {
     width: 160px;
-    margin: 0 auto;
+    margin: 0.5em auto 0;
 	padding: 0.3em 0 0.5em;
 	font-size: var(--fzSmall);
 	text-align: center;
     background-color: rgba(0, 0, 0, 0.5);
+	border-radius: 10px;
 }
 
 	.ranking__top {

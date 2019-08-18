@@ -57,7 +57,7 @@ export default class Physics {
 			}
 
 			if (obj.xvel !== 0) {
-				obj.rotation += obj.xvel * 2;
+				obj.rotation += obj.xvel * 1.5;
 			}
 		}
 	}

@@ -7,6 +7,7 @@
 
 	& .gameboard {
 		background-color: #b0dfae;
+		background-image: linear-gradient(#b0dfae, #76b773);
 	}
 
 	& .ranking {
@@ -18,7 +19,9 @@
 	}
 
 	& .options__block {
-		background-color: #00000042;
+		@media (--small-viewport) {
+			background-color: #00000042;
+		}
 	}
 
 	& .pageinfo {

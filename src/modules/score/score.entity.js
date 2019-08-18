@@ -10,13 +10,13 @@ const
 export default function(view, core) {
 	// props
 	let _current = 0,
-		_last = localStorage.getItem(CNT.LS_TOP_SCORE) || 0,
+		_last = core.st.getItem(CNT.LS_TOP_SCORE) || 0,
 		_visible = false,
 		_timer   = 0,
 		_opacity = 0,
 		_scale   = 0;
 
-	core.v.then(clear, 'clearRanking');
+	core.v.then(clear, CNT.EV_CLEAR_RANKING);
 
 	function render() {
 		if (_visible) {

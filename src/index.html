@@ -38,18 +38,35 @@
 			</section>
 			<section class="options__section">
 				<div class="options__sectionContent">
-					<strong>Speed</strong>
-					<input type="range" name="speed" value="1" min="1" max="2" step="0.1" data-action="changeSpeed" />
+					<label for="opt-speed" class="options__label">Speed</label><br>
+					<input type="range" value="1" min="1" max="2" step="0.1" id="opt-speed"
+						data-action="changeSpeed" data-bind="speed" />
 				</div>
 			</section>
 			<section class="options__section">
 				<div class="options__sectionContent">
-					<input type="button" class="button button-warning" data-action="clearRanking" value="Clear ranking">
+					<label for="opt-ball" class="options__label">Ball</label><br>
+					<select id="opt-ball" data-action="changeBall" data-bind="ball">
+						<option value="0">Golf</option>
+						<option value="1" selected>Tennis</option>
+						<option value="2">Football</option>
+					</select>
+				</div>
+			</section>
+			<section class="options__section">
+				<div class="options__sectionContent">
+					<label for="opt-mute" class="options__label">Mute sounds</label>
+					<input type="checkbox" id="opt-mute" value="1" data-action="toggleMute" data-bind="muted" />
+				</div>
+			</section>
+			<section class="options__section">
+				<div class="options__sectionContent">
+					<span class="button button-warning" data-action="clearRanking">Clear ranking</span>
 				</div>
 			</section>
 		</aside>
 
-		<div id="ball" class="ball"><div class="ball__lines"></div></div>
+		<div id="ball" class="ball ball--tennis"><div class="ball__lines"></div></div>
 	</main>
 
 	<footer class="page-footer" role="contentinfo">

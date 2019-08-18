@@ -5,6 +5,9 @@
 
 /* Components */
 @import '../modules/ball/ball.default.css';
+@import '../modules/ball/ball.tennis.css';
+@import '../modules/ball/ball.golf.css';
+@import '../modules/ball/ball.football.css';
 @import '../modules/gameboard/gameboard.default.css';
 @import '../modules/score/score.default.css';
 @import '../modules/ranking/ranking.default.css';

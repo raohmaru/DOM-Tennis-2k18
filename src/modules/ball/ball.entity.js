@@ -1,5 +1,13 @@
+import { EV_CHANGE_BALL } from '../../js/const.js';
+
+const BALLS = [
+	'golf',
+	'tennis',
+	'football'
+];
+
 export default class {
-	constructor(view) {
+	constructor(view, core) {
 		// view
 		this.view      = view;
 		this.viewLines = view.querySelector('.ball__lines');
@@ -13,6 +21,7 @@ export default class {
 		this._rotation = 0;
 
 		this.update();
+		core.v.then(this.change.bind(this), EV_CHANGE_BALL);
 	}
 
 	get width() {
@@ -46,5 +55,10 @@ export default class {
 	update() {
 		this._width = this.view.clientWidth;
 		this._height = this.view.clientHeight;
+	}
+
+	change(el) {
+		this.view.className = `ball ball--${BALLS[el.value]}`;
+		this.update();
 	}
 };

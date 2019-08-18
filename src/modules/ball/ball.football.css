@@ -1,0 +1,29 @@
+:root {
+	--footballBallSize: 72px;
+	--footballBallBigSize: 96px;
+	--footballBallColorLight: #fdfdfd;
+	--footballBallColorDark: #888;
+}
+
+.ball--football {
+	width: var(--footballBallBigSize);
+	height: var(--footballBallBigSize);
+	background: var(--footballBallColorLight); /* Old browsers */
+	background: radial-gradient(ellipse at 35% 35%, var(--footballBallColorLight) 20%, var(--footballBallColorDark) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+	@media (--small-viewport) {
+		width: var(--footballBallSize);
+		height: var(--footballBallSize);
+	}
+
+	& .ball__lines {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background: url(var(--svgSprite)#soccer-ball);  /* stylelint-disable-line function-whitespace-after */
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+}

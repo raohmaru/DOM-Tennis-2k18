@@ -84,6 +84,12 @@
 			font-size: var(--fzSmall);
 		}
 
+			.options__label {
+				display: inline-block;
+				padding-bottom: 0.5em;
+				font-weight: bold;
+			}
+
 .options--open {
 	transform: translateX(-100%);
 

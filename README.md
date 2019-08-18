@@ -1,11 +1,11 @@
-# DOM Tennis 2k19
+# DOM Tennis
 A browser game using HTML, CSS and [vanilla JavaScript](http://vanilla-js.com/).  
 The goal of the game is to kick the ball with the cursor over and over without touching the floor.
 
 The game is developed without using any game framework, nor using canvas neither WebGL, just for
 the sake of testing the performance with the [DOM](https://en.wikipedia.org/wiki/Document_Object_Model) at 60 fps.
 
-&#x1F3BE; [Play it now!](https://raohmaru.com/lab/game/dom-tennis-2k18/)
+&#x1F3BE; [Play it now!](https://raohmaru.com/lab/game/dom-tennis/)
 
 ## Getting Started
 You will need [node.js](https://nodejs.org/en/) v6.9.2 or greater installed on your machine.

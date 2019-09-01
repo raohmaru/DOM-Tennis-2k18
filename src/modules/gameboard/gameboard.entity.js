@@ -8,6 +8,7 @@ export function Gameboard(view) {
 	function update() {
 		const bcr = view.getBoundingClientRect();
 		offset.left = bcr.x;
+		offset.top = bcr.y;
 
 		box.update(
 			view.clientWidth,

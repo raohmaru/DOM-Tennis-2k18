@@ -2,27 +2,18 @@ import SAS       from './sas/sasynth.js';
 import Note      from './sas/note.js';
 import * as _    from './util.js';
 
-// 'si,70,0,1:.02,.01,.1,.07,.8:lo,0,670,0,1'
 const notesParams = [
 		{
 			'name': 'ballHit',
 			'type': 'sine',
-			'freq': 45,
+			'freq': 60,
 			'envelope': [
 				0.02,
 				0.01,
 				0.1,
 				0.07
 			],
-			'volume': 1.3,
-			'envelopeSustainLevel': 1,
-			'biquadFilter': {
-				'type': 'lowpass',
-				'detune': 0,
-				'frequency': 430,
-				'gain': 0,
-				'Q': 1
-			}
+			'envelopeSustainLevel': 0.1
 		},
 		{
 			'name': 'wallHit',
@@ -35,7 +26,7 @@ const notesParams = [
 				0.1,
 				0.02
 			],
-			'envelopeSustainLevel': 0.8,
+			'envelopeSustainLevel': 0.5,
 			'biquadFilter': {
 				'type': 'lowpass',
 				'detune': 0,
@@ -51,14 +42,17 @@ let sas,
 
 function init() {
 	sas = new SAS();
-	sas.start();
 
 	for (let p of notesParams) {
 		notes[p.name] = new Note(sas, p);
 	}
 }
 
-function play(name, volume) {
+function start() {
+	sas.start();
+}
+
+function play(name, { volume, pitch }) {
 	if (!sas || paused) {
 		return;
 	}
@@ -67,6 +61,9 @@ function play(name, volume) {
 		const note = notes[name];
 		if (volume !== undefined) {
 			note.volume = Math.min(volume, 1);
+		}
+		if (pitch !== undefined) {
+			note.freqDetune = Math.min(pitch, 1000);
 		}
 		note.play();
 	}
@@ -82,6 +79,7 @@ function resume() {
 
 export default {
 	init,
+	start,
 	play: _.throttle(play, 20),
 	pause,
 	resume

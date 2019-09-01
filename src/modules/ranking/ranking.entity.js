@@ -16,7 +16,7 @@ export function Ranking(view, core) {
 		updateHeight(parseInt(savedHeight, 10));
 	}
 
-	core.v.then(clear, CNT.EV_CLEAR_RANKING);
+	core.v.on(clear, CNT.EV_CLEAR_RANKING);
 
 	function updateScore(value) {
 		if ((value && !_scores[0]) || value > _scores[0]) {

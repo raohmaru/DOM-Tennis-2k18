@@ -3,7 +3,7 @@
 	width: 100%;
 	margin-top: 0.7em;
 	color: #fff;
-	
+
 	@media (--small-viewport) {
 		position: relative;
 		margin-top: 0.5em;
@@ -12,11 +12,13 @@
 }
 
 .pageinfo {
+	display: flex;
+	justify-content: center;
 	margin: 0;
 	padding: 0;
 	font-size: var(--fzSmall);
 	text-align: center;
-	
+
 	@media (--small-viewport) {
 		text-align: right;
 		color: initial;
@@ -25,9 +27,9 @@
 
 	.pageinfo__item {
 		display: inline-block;
-		
+
 		&:nth-child(n+2)::before {
-			content: "\26AC\0020";
-			margin: 0 2px;
+			content: "\2022";
+			margin: 0 9px;
 		}
 	}

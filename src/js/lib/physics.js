@@ -14,7 +14,7 @@ export default class Physics {
 		this._objects.push(obj);
 		obj.yvel     = 0;
 		obj.xvel     = 0;
-		obj.onCollision = new Signal();
+		obj.collision = new Signal();
 	}
 
 	update() {
@@ -32,7 +32,7 @@ export default class Physics {
 				obj.yvel *= -cfg.groundFriction;
 				obj.y = bbox.bottom - obj.height;
 				if (obj.yvel) {
-					obj.onCollision.emit(obj, 'bbox:bottom');
+					obj.collision.emit(obj, 'bbox:bottom');
 				}
 				if (obj.yvel > -cfg.vSpeedThreshold) {
 					obj.y = bbox.bottom - obj.height;
@@ -46,11 +46,11 @@ export default class Physics {
 			if (obj.x < bbox.left) {
 				obj.x += bbox.left - obj.x;
 				obj.xvel *= -cfg.wallFriction;
-				obj.onCollision.emit(obj, 'bbox:left');
+				obj.collision.emit(obj, 'bbox:left');
 			} else if (obj.right > bbox.right) {
 				obj.x -= obj.right - bbox.right;
 				obj.xvel *= -cfg.wallFriction;
-				obj.onCollision.emit(obj, 'bbox:right');
+				obj.collision.emit(obj, 'bbox:right');
 			}
 			if (Math.abs(obj.xvel) < cfg.hSpeedThreshold) {
 				obj.xvel = 0;

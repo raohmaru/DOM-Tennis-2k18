@@ -1,0 +1,16 @@
+.cursor {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: var(--zCursor);
+	transform: translateZ(0);
+	pointer-events: none;
+	width: 30px;
+	height: 30px;
+	background-image: url(var(--svgSprite)#racket);  /* stylelint-disable-line function-whitespace-after */
+	transition: opacity 0.25s linear;
+}
+
+.cursor--fadeout {
+	opacity: 0;
+}

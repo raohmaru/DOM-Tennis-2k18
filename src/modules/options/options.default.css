@@ -6,12 +6,13 @@
 .options {
 	position: absolute;
 	top: 0;
-	z-index: 3;
+	z-index: var(--zOptions);
 	left: 100%;
 	width: 100%;
 	height: 100%;
 	transform: translateZ(0);
 	transition: transform 0.3s ease;
+	cursor: default;
 
 	@media (--small-viewport) {
 		width: var(--optionsWidth);

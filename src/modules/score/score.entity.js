@@ -16,7 +16,7 @@ export function Score(view, core) {
 		_opacity = 0,
 		_scale   = 0;
 
-	core.v.then(clear, CNT.EV_CLEAR_RANKING);
+	core.v.on(clear, CNT.EV_CLEAR_RANKING);
 
 	function render() {
 		if (_visible) {

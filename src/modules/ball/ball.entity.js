@@ -21,23 +21,15 @@ export class Ball {
 		this._rotation = 0;
 
 		this.update();
-		core.v.then(this.change.bind(this), EV_CHANGE_BALL);
-	}
-
-	get width() {
-		return this._width;
-	}
-
-	get height() {
-		return this._height;
+		core.v.on(this.change.bind(this), EV_CHANGE_BALL);
 	}
 
 	get right() {
-		return this.x + this._width;
+		return this.x + this.width;
 	}
 
 	get bottom() {
-		return this.y + this._height;
+		return this.y + this.height;
 	}
 
 	render() {
@@ -53,8 +45,8 @@ export class Ball {
 	}
 
 	update() {
-		this._width = this.view.clientWidth;
-		this._height = this.view.clientHeight;
+		this.width = this.view.clientWidth;
+		this.height = this.view.clientHeight;
 	}
 
 	change(el) {

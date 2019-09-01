@@ -27,7 +27,7 @@ JavaScript is written using features of [ECMAScript 2015+](https://github.com/lu
 and transpiled with [Babel](https://babeljs.io/). The game is rendered using the DOM and the HTML
 elements are animated using CSS.
 
-### Available npm commands
+### Available NPM Commands
 `npm run build`  
 Generate CSS files and copies HTML and JS files to dist/ folder.
 
@@ -46,6 +46,9 @@ Watches for changes in src/ folder and runs the appropriate task when a file is 
 
 `npm start`  
 Starts a dev server at 127.0.0.1:8080 with path to dist/ folder.
+
+### A Note About the Sounds
+The sounds effects are dynamically generated using the Web Audio API and an [audio synthesizer library](https://github.com/raohmaru/simple-audio-synthesizer).
 
 ## Browser Support
 The game supports IE 11, Edge, Firefox 15+, Chrome 20+, Safari 8+.

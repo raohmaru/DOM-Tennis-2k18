@@ -6,7 +6,7 @@ import Physics   from './lib/physics.js';
 import Signal    from './lib/signal.js';
 import SoundMan  from './lib/sndman.js';
 import Storage   from './lib/storage.js';
-import { Ball, Gameboard, Score, Ranking, Options }  from '../modules/index.js';
+import { Ball, Gameboard, Score, Ranking, Options, Cursor } from '../modules/index.js';
 
 // variables
 let core,
@@ -14,9 +14,11 @@ let core,
 	gameboard,
 	score,
 	ranking,
+	cursor,
 	physics,
 	cfg,
-	watchHeigth;
+	watchHeigth,
+	frameCb;
 
 function init(opts) {
 	cfg = opts;
@@ -30,6 +32,7 @@ function init(opts) {
 	gameboard = Gameboard($('.gameboard')[0]);
 	score     = Score($('#score'), core);
 	ranking   = Ranking($('.ranking')[0], core);
+	cursor    = new Cursor($('#cursor'), gameboard);
 	Options($('.options')[0], core);
 
 	ball = new Ball($('#ball'), core);
@@ -37,12 +40,15 @@ function init(opts) {
 	ball.y = (gameboard.box.height >> 1) - ball.height;
 	ball.render();
 
-	let beat = new Beat(cfg.fps, frame);
-	beat.start();
-
 	initPhysics();
 	initEvents();
 	SoundMan.init();
+
+	return {
+		start,
+		v: core.v,
+		ball: ball
+	};
 }
 
 function initPhysics() {
@@ -50,11 +56,11 @@ function initPhysics() {
 	physics.addBoundingBox(gameboard.box);
 	physics.addObject(ball);
 
-	ball.onCollision.then((obj, where) => {
+	ball.collision.then((obj, where) => {
 		if (where === 'bbox:left' || where === 'bbox:right') {
 			const v = Math.abs(obj.xvel) * 0.1;
 			if (v >= 0.01) {
-				SoundMan.play('wallHit', v);
+				SoundMan.play('wallHit', {volume: v});
 			}
 		} else if (where === 'bbox:bottom') {
 			ranking.updateScore(score.getCurrent());
@@ -62,7 +68,7 @@ function initPhysics() {
 			watchHeigth = false;
 			const v = Math.abs(obj.yvel) * 0.1;
 			if (v >= 0.01) {
-				SoundMan.play('wallHit', v);
+				SoundMan.play('wallHit', {volume: v});
 			}
 		}
 	});
@@ -112,7 +118,7 @@ function ballHit(e) {
 	ball.yvel = -cfg.hitPower;
 	ball.xvel = (ball.x + (ball.width >> 1) - (clientX - gameboard.offset.left)) * cfg.hitHorizMult;
 	addKickCount();
-	SoundMan.play('ballHit');
+	SoundMan.play('ballHit', {pitch: ballHeight()});
 	watchHeigth = true;
 }
 
@@ -122,18 +128,33 @@ function addKickCount() {
 		.render();
 }
 
+function ballHeight() {
+	return parseInt(gameboard.box.bottom - ball.bottom, 10);
+}
+
 function frame(currentTime) {
 	physics.update();
 	ball.render();
 	score.render();
+	cursor.render();
 	if (watchHeigth) {
-		ranking.updateHeight(parseInt(gameboard.box.bottom - ball.bottom, 10));
+		ranking.updateHeight(ballHeight());
+	}
+	if (frameCb) {
+		frameCb();
 	}
 }
 
 function winResizeHandler(e) {
 	ball.update();
 	gameboard.update();
+}
+
+function start(cb) {
+	let beat = new Beat(cfg.fps, frame);
+	beat.start();
+	SoundMan.start();
+	frameCb = cb;
 }
 
 export default {

@@ -4,15 +4,15 @@ export default class Signal {
 		this._namedListeners = {};
 	}
 
-	then(callback, name) {
-		if (name) {
-			if (!this._namedListeners[name]) {
-				this._namedListeners[name] = [];
-			}
-			this._namedListeners[name].push(callback);
-		} else {
-			this._listeners.push(callback);
+	then(callback) {
+		this._listeners.push(callback);
+	}
+
+	on(callback, name) {
+		if (!this._namedListeners[name]) {
+			this._namedListeners[name] = [];
 		}
+		this._namedListeners[name].push(callback);
 	}
 
 	emit(...args) {

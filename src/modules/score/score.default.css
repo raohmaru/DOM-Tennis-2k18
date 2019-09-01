@@ -13,11 +13,12 @@
 		width: 100%;
 		text-align: center;
 	}
-	
+
 		.score__value {
 		    position: relative;
 			top: -0.5em;
 			font-size: 80px;
 			font-weight: bold;
+			letter-spacing: -0.05em;
 			transform: translateZ(0);
 		}

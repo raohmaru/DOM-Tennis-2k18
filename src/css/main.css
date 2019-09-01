@@ -16,12 +16,17 @@
 @import '../modules/footer/footer.default.css';
 @import '../modules/options/options.default.css';
 @import '../modules/title/title.default.css';
+@import '../modules/cursor/cursor.default.css';
 
 /* Themes */
 @import 'themes/theme.default.css';
 
 :root {
 	--svgSprite: ../img/sprite.svg;
+	--zBall: 2;
+	--zCursor: 3;
+	--zOptions: 4;
+	--zScreen: 10;
 }
 
 .align-right {

@@ -3,6 +3,7 @@
 	height: 100%;
 	overflow: hidden;
 	touch-action: manipulation;  /* Eliminate 300 ms click delay */
+	cursor: none;
 
 	@media (--small-viewport) {
 		height: 92%;

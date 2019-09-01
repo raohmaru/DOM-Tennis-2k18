@@ -10,6 +10,10 @@ function setItem(name, value) {
 	localStorage.setItem(storageName, JSON.stringify(data));
 }
 
+function getAll() {
+	return Object.assign({}, data);
+}
+
 export default function(lsName) {
 	storageName = lsName;
 	data = localStorage.getItem(lsName);
@@ -22,6 +26,6 @@ export default function(lsName) {
 	return  {
 		getItem,
 		setItem,
-		getAll: () => Object.assign({}, data)
+		getAll
 	};
 };

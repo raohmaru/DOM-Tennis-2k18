@@ -1,7 +1,7 @@
 {
   "name": "domtennis",
   "title": "DOM Tennis",
-  "version": "0.5.2",
+  "version": "0.5.4",
   "description": "HTML + CSS + JavaScript tennis game",
   "main": "index.html",
   "scripts": {

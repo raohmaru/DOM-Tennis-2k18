@@ -6,6 +6,7 @@ export const
 	LS_BALL          = 'ball',
 	LS_MUTED         = 'muted',
 	// Events
+	EV_BALL_KICK     = 'ballKick',
 	EV_TOOGLE_OPEN   = 'toogleOpen',
 	EV_CLOSE         = 'close',
 	EV_CHANGE_SPEED  = 'changeSpeed',

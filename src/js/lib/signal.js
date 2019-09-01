@@ -31,10 +31,11 @@ export default class Signal {
 
 	remove(callback) {
 		this._listeners = this._listeners.filter((func) => func !== callback);
-		for (var name in this._namedListeners) {
-			if (Object.prototype.hasOwnProperty(this._namedListeners, name)) {
-				this._namedListeners[name] = this._namedListeners[name].filter((func) => func !== callback);
-			}
+	}
+
+	off(callback, name) {
+		if (this._namedListeners[name]) {
+			this._namedListeners[name] = this._namedListeners[name].filter((func) => func !== callback);
 		}
 	}
 

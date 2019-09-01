@@ -1,0 +1,24 @@
+:root {
+	--walterBallSize: 52px;
+	--walterBallBigSize: 74px;
+}
+
+.ball--walter {
+	width: var(--walterBallBigSize);
+	height: var(--walterBallBigSize);
+	background: none;
+
+	@media (--small-viewport) {
+		width: var(--walterBallSize);
+		height: var(--walterBallSize);
+	}
+
+	& .ball__lines {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background: url("../img/walter.png") no-repeat 0 0 / contain;
+	}
+}

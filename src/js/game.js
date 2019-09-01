@@ -1,5 +1,6 @@
 import * as env  from './env.js';
 import * as _    from './lib/util.js';
+import * as CNT  from './const.js';
 import $         from './lib/dom.js';
 import Beat      from './lib/beat.js';
 import Physics   from './lib/physics.js';
@@ -32,8 +33,11 @@ function init(opts) {
 	gameboard = Gameboard($('.gameboard')[0]);
 	score     = Score($('#score'), core);
 	ranking   = Ranking($('.ranking')[0], core);
-	cursor    = new Cursor($('#cursor'), gameboard);
 	Options($('.options')[0], core);
+
+	if (!env.isTouch) {
+		cursor = new Cursor($('#cursor'), gameboard);
+	}
 
 	ball = new Ball($('#ball'), core);
 	ball.x = gameboard.box.left + (gameboard.box.width >> 1) - ball.width;
@@ -47,7 +51,8 @@ function init(opts) {
 	return {
 		start,
 		v: core.v,
-		ball: ball
+		ball: ball,
+		score: score
 	};
 }
 
@@ -120,12 +125,12 @@ function ballHit(e) {
 	addKickCount();
 	SoundMan.play('ballHit', {pitch: ballHeight()});
 	watchHeigth = true;
+	core.v.emit(CNT.EV_BALL_KICK, score.getCurrent());
 }
 
 function addKickCount() {
 	score.add(1)
-		.update()
-		.render();
+		.update();
 }
 
 function ballHeight() {
@@ -136,7 +141,9 @@ function frame(currentTime) {
 	physics.update();
 	ball.render();
 	score.render();
-	cursor.render();
+	if (cursor) {
+		cursor.render();
+	}
 	if (watchHeigth) {
 		ranking.updateHeight(ballHeight());
 	}

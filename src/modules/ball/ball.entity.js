@@ -3,7 +3,8 @@ import { EV_CHANGE_BALL } from '../../js/const.js';
 const BALLS = [
 	'golf',
 	'tennis',
-	'football'
+	'football',
+	'walter'
 ];
 
 export class Ball {
@@ -50,7 +51,7 @@ export class Ball {
 	}
 
 	change(el) {
-		this.view.className = `ball ball--${BALLS[el.value]}`;
+		this.view.className = `ball ball--${BALLS[el.value || el]}`;
 		this.update();
 	}
 };

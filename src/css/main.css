@@ -9,6 +9,7 @@
 @import '../modules/ball/ball.tennis.css';
 @import '../modules/ball/ball.golf.css';
 @import '../modules/ball/ball.football.css';
+@import '../modules/ball/ball.walter.css';
 @import '../modules/gameboard/gameboard.default.css';
 @import '../modules/score/score.default.css';
 @import '../modules/ranking/ranking.default.css';
@@ -20,6 +21,7 @@
 
 /* Themes */
 @import 'themes/theme.default.css';
+@import 'themes/theme.chucho.css';
 
 :root {
 	--svgSprite: ../img/sprite.svg;

@@ -14,13 +14,14 @@ export function Score(view, core) {
 		_visible = false,
 		_timer   = 0,
 		_opacity = 0,
-		_scale   = 0;
+		_scale   = 0,
+		_dur;
 
 	core.v.on(clear, CNT.EV_CLEAR_RANKING);
 
 	function render() {
 		if (_visible) {
-			if (_timer++ < DURATION) {
+			if (_timer++ < _dur) {
 				let cssStr = 'display: block;';
 
 				if (_scale < 1) {
@@ -44,8 +45,15 @@ export function Score(view, core) {
 		return this;
 	}
 
-	function update(txt) {
-		view.textContent = txt || _current;
+	function update(txt, style, newDur) {
+		if (style) {
+			const html = `<span class="score--${style}">${txt}</span>`;
+			view.innerHTML = html;
+		} else {
+			view.textContent = txt || _current;
+		}
+
+		_dur = newDur || DURATION;
 		_timer   = 0;
 		_opacity = 0;
 		_scale   = 0;

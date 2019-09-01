@@ -1,0 +1,7 @@
+.theme-chucho {
+	& .gameboard {
+		background-image: url("https://instagram.fbcn3-1.fna.fbcdn.net/vp/ddaa13745ca72f02dc2a2f9a7da28df0/5E0F6C8A/t51.2885-15/e35/37377222_272173106920263_8368236811201282048_n.jpg?_nc_ht=instagram.fbcn3-1.fna.fbcdn.net");
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+}

@@ -6,6 +6,6 @@
 	cursor: none;
 
 	@media (--small-viewport) {
-		height: 92%;
+		height: calc(100% - 90px);
 	}
 }
